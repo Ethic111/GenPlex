@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: ehr_management_system
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: RADHIKA
+Implementation-Vendor-Id: ehr_management
+Build-Jdk: 1.8.0_152
+Implementation-URL: http://projects.spring.io/spring-boot/ehr_manageme
+ nt_system/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
