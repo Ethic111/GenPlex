@@ -24,25 +24,25 @@ public class DegreeController {
 	}
 	
 	
-	@GetMapping(value = "degrees")
+	@GetMapping(value = "admin/degrees")
 	public ModelAndView addCity() {
 		List<DegreeVo> degreeList = this.degreeService.search();
 		return new ModelAndView("admin/viewDegree","degreeList",degreeList);
 	}
 
-	@GetMapping(value = "addDegree")
+	@GetMapping(value = "admin/addDegree")
 	public ModelAndView addDegree() {
 		
 		return new ModelAndView("admin/addDegree","DegreeVo",new DegreeVo());
 	}
 	
-	@PostMapping(value="saveDegree")
+	@PostMapping(value="admin/saveDegree")
 	public ModelAndView saveDegree(@ModelAttribute DegreeVo degVo){
 		this.degreeService.save(degVo);
 		return new ModelAndView("redirect:degrees");
 	}
 	
-	@GetMapping(value="deleteDegree")
+	@GetMapping(value="admin/deleteDegree")
 	public ModelAndView deleteDegree(@RequestParam("id") int id){
 		
 		this.degreeService.delete(id);
@@ -50,7 +50,7 @@ public class DegreeController {
 		
 	}
 	
-	@GetMapping(value="editDegree")
+	@GetMapping(value="admin/editDegree")
 	public ModelAndView editDegree(@RequestParam("id") int id){
 		
 		DegreeVo degreeVo = this.degreeService.searchById(id);

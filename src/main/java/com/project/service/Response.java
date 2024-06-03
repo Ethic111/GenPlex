@@ -2,7 +2,7 @@ package com.project.service;
 
 import java.util.List;
 
-import com.project.model.RequestedDoctorVo;
+import com.project.model.DoctorVO;
 
 public class Response {
 	

@@ -27,25 +27,25 @@ public class CityController {
 		this.stateService = stateService;
 	}
 
-	@GetMapping(value = "addCity")
+	@GetMapping(value = "admin/addCity")
 	public ModelAndView addCity() {
 		List<StateVo> stateList = this.stateService.search();
 		return new ModelAndView("admin/addCity", "CityVo", new CityVo()).addObject("stateList", stateList);
 	}
 
-	@PostMapping(value = "insertCity")
+	@PostMapping(value = "admin/insertCity")
 	public ModelAndView insertCity(@ModelAttribute CityVo cityVo) {
 		this.cityService.save(cityVo);
 		return new ModelAndView("redirect:cities");
 	}
 
-	@GetMapping(value = "cities")
+	@GetMapping(value = "admin/cities")
 	public ModelAndView viewCities() {
 		List<CityVo> cityList = this.cityService.search();
 		return new ModelAndView("admin/viewCities", "cityList", cityList);
 	}
 
-	@GetMapping(value = "deleteCity")
+	@GetMapping(value = "admin/deleteCity")
 	public ModelAndView deleteCity(@RequestParam("id") int id) {
 
 		CityVo v1 = this.cityService.seachById(id);
@@ -55,7 +55,7 @@ public class CityController {
 		return new ModelAndView("redirect:cities");
 	}
 
-	@GetMapping(value = "editCity")
+	@GetMapping(value = "admin/editCity")
 	public ModelAndView editState(@RequestParam("id") int id) {
 
 		CityVo cityVo = this.cityService.seachById(id);
@@ -65,7 +65,7 @@ public class CityController {
 		return new ModelAndView("redirect:cities");
 	}
 
-	@GetMapping(value = "/api/cities")
+	@GetMapping(value = "api/cities")
 	@ResponseBody
 	public ResponseEntity<List<CityVo>> apiCities(@RequestParam("state") int stateId) {
 		List<CityVo> cityList = this.cityService.getCitiesByStateID(stateId);
@@ -73,7 +73,7 @@ public class CityController {
 
 	}
 	
-	@GetMapping(value = "/api/state")
+	@GetMapping(value = "api/state")
 	@ResponseBody
 	public ResponseEntity<String> apiState(@RequestParam("city") int cityId) {
 		CityVo cityvo = this.cityService.getStateByCityID(cityId);

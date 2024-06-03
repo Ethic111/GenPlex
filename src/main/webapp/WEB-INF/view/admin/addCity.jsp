@@ -25,31 +25,32 @@
 <!-- End fonts -->
 
 <!-- core:css -->
-<link rel="stylesheet" href="adminresources/css/core.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/core.css" />
 <!-- endinject -->
 
 <!-- Plugin css for this page -->
-<link rel="stylesheet" href="adminresources/css/select2.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/select2.min.css" />
 <link rel="stylesheet"
-	href="adminresources/css/jquery.tagsinput.min.css" />
-<link rel="stylesheet" href="adminresources/css/dropzone.min.css" />
-<link rel="stylesheet" href="adminresources/css/dropify.min.css" />
-<link rel="stylesheet" href="adminresources/css/classic.min.css" />
-<link rel="stylesheet" href="adminresources/css/font-awesome.min.css" />
-<link rel="stylesheet" href="adminresources/css/flatpickr.min.css" />
+	href="<%=request.getContextPath()%>/adminresources/css/jquery.tagsinput.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/dropzone.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/dropify.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/classic.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/font-awesome.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/flatpickr.min.css" />
 <!-- End plugin css for this page -->
 
 <!-- inject:css -->
 <link rel="stylesheet"
-	href="adminresources/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="adminresources/css/flag-icon.min.css" />
+	href="<%=request.getContextPath()%>/adminresources/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/flag-icon.min.css" />
 <!-- endinject -->
 
 <!-- Layout styles -->
-<link rel="stylesheet" href="adminresources/css/style.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/style.min.css" />
 <!-- End layout styles -->
 
-<link rel="shortcut icon" href="adminresources/images/favicon.png" />
+<%-- <link rel="shortcut icon" href="<%=request.getContextPath()%>/adminresources/images/favicon.png" /> --%>
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/adminresources/images/genplexLOGO.png" />
 </head>
 <body>
 	<div class="main-wrapper">
@@ -128,41 +129,41 @@
 	</div>
 
 	<!-- core:js -->
-	<script src="adminresources/js/core.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/core.js"></script>
 	<!-- endinject -->
 
 	<!-- Plugin js for this page -->
-	<script src="adminresources/js/jquery.validate.min.js"></script>
-	<script src="adminresources/js/bootstrap-maxlength.min.js"></script>
-	<script src="adminresources/js/jquery.inputmask.min.js"></script>
-	<script src="adminresources/js/select2.min.js"></script>
-	<script src="adminresources/js/typeahead.bundle.min.js"></script>
-	<script src="adminresources/js/jquery.tagsinput.min.js"></script>
-	<script src="adminresources/js/dropzone.min.js"></script>
-	<script src="adminresources/js/dropify.min.js"></script>
-	<script src="adminresources/js/pickr.min.js"></script>
-	<script src="adminresources/js/moment.min.js"></script>
-	<script src="adminresources/js/flatpickr.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.validate.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/bootstrap-maxlength.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.inputmask.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/select2.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/typeahead.bundle.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.tagsinput.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/dropzone.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/dropify.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/pickr.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/moment.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/flatpickr.min.js"></script>
 	<!-- End plugin js for this page -->
 
 	<!-- inject:js -->
-	<script src="adminresources/js/feather.min.js"></script>
-	<script src="adminresources/js/template.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/feather.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/template.js"></script>
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-	<script src="adminresources/js/bootstrap-maxlength.js"></script>
-	<script src="adminresources/js/inputmask.js"></script>
-	<script src="adminresources/js/select2.js"></script>
-	<script src="adminresources/js/typeahead.js"></script>
-	<script src="adminresources/js/tags-input.js"></script>
-	<script src="adminresources/js/dropzone.js"></script>
-	<script src="adminresources/js/dropify.js"></script>
-	<script src="adminresources/js/pickr.js"></script>
-	<script src="adminresources/js/flatpickr.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/bootstrap-maxlength.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/inputmask.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/select2.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/typeahead.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/tags-input.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/dropzone.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/dropify.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/pickr.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/flatpickr.js"></script>
 	<!-- End custom js for this page -->
 
 	<!-- Custom add state form validation -->
-	<script src="adminresources/js/custom/city.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/custom/city.js"></script>
 </body>
 </html>

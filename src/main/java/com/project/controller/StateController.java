@@ -21,24 +21,24 @@ public class StateController {
 		this.stateService = stateService;
 	}
 
-	@GetMapping(value = "addState")
+	@GetMapping(value = "admin/addState")
 	public ModelAndView addState() {
 		return new ModelAndView("admin/addState", "StateVo", new StateVo());
 	}
 
-	@PostMapping(value = "insertState")
+	@PostMapping(value = "admin/insertState")
 	public ModelAndView insertState(@ModelAttribute StateVo stateVo) {
 		this.stateService.save(stateVo);
 		return new ModelAndView("redirect:states");
 	}
 
-	@GetMapping(value = "states")
+	@GetMapping(value = "admin/states")
 	public ModelAndView viewStates() {
 		List<StateVo> stateList = this.stateService.search();
 		return new ModelAndView("admin/viewStates", "stateList", stateList);
 	}
 
-	@GetMapping(value = "deleteState")
+	@GetMapping(value = "admin/deleteState")
 	public ModelAndView deleteState(@RequestParam("id") int id) {
 
 		StateVo stateVO = this.stateService.seachById(id);
@@ -46,7 +46,7 @@ public class StateController {
 		return new ModelAndView("redirect:states");
 	}
 
-	@GetMapping(value = "editState")
+	@GetMapping(value = "admin/editState")
 	public ModelAndView editState(@RequestParam("id") int id) {
 		StateVo stateVo = this.stateService.seachById(id);
 		return new ModelAndView("admin/addState", "StateVo", stateVo);

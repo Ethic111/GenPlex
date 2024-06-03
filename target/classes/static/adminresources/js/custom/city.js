@@ -10,7 +10,7 @@ $(function() {
 		rules : {
 			stateName : {
 				required : true,
-				min : 0
+				min : 1
 			},
 			cityName : {
 				required : true,

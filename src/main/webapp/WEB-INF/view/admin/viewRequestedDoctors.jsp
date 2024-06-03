@@ -26,33 +26,41 @@
 <!-- End fonts -->
 
 <!-- core:css -->
-<link rel="stylesheet" href="adminresources/css/core.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/core.css" />
 <!-- endinject -->
 
 <!-- Plugin css for this page -->
 <link rel="stylesheet"
-	href="adminresources/css/dataTables.bootstrap5.css" />
+	href="<%=request.getContextPath()%>/adminresources/css/dataTables.bootstrap5.css" />
 <!-- End plugin css for this page -->
 
 <!-- Plugin css for this page -->
-<link rel="stylesheet" href="adminresources/css/sweetalert2.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/sweetalert2.min.css">
 <!-- End plugin css for this page -->
 
 <!-- inject:css -->
 <link rel="stylesheet"
-	href="adminresources/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="adminresources/css/flag-icon.min.css" />
+	href="<%=request.getContextPath()%>/adminresources/css/materialdesignicons.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/flag-icon.min.css" />
 <!-- endinject -->
 
 <!-- Layout styles -->
-<link rel="stylesheet" href="adminresources/css/style.min.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/style.min.css" />
 <!-- End layout styles -->
 
 <!-- Layout styles -->
-<link rel="stylesheet" href="adminresources/css/style.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/style.min.css">
 <!-- End layout styles -->
 
-<link rel="shortcut icon" href="adminresources/images/favicon.png" />
+<%-- <link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/adminresources/images/favicon.png" /> --%>
+<link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/adminresources/images/genplexLOGO.png" />
 </head>
 <body>
 	<div class="main-wrapper">
@@ -92,7 +100,7 @@
 							<div>
 								<label for="reviewStatus" class="form-label"></label> <select
 									class="form-select" name="reviewStatus"
-									id="reviewstatus_select">
+									id="reviewstatus_select" style="cursor: pointer;">
 									<option value="NOT_REVIEWED">New Requests</option>
 									<option value="ACCEPTED">Active</option>
 									<option value="REJECTED">Rejected</option>
@@ -134,13 +142,19 @@
 																	style="color: red; font-size: 1.5rem;"></i></a>
 															</c:when>
 															<c:otherwise>
-																<a href="doctorAccepted?id=${i.id}">
+																<%-- <a href="doctorAccepted?id=${i.id}">
 																	<button class="btn btn-success">Accept</button>
-																</a>
+																</a> --%>
+
+																<button class="btn btn-success accept-btn" id="submitAcception"
+																	onclick="acceptDoctor(${i.id})">Accept</button>
+
 																<!-- doctorRejected?id=${i.id} -->
 
-																<button class="btn btn-danger"
-																	onclick="showRejectModal(${i.id})">Reject</button>
+																<button class="btn btn-danger reject-btn"
+																	onclick="showRejectModal(${i.id})"
+																	data-bs-toggle="modal" data-bs-target="#exampleModal">Reject</button>
+
 
 															</c:otherwise>
 														</c:choose></td>
@@ -149,13 +163,44 @@
 											</c:forEach>
 										</tbody>
 									</table>
+									<div class="modal fade" id="exampleModal" tabindex="-1"
+										aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title text-danger" id="exampleModalLabel">Are
+														you sure you want to Reject ?</h4>
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													<form id="rejectionForm">
+														<div class="form-group">
+															<label for="rejectionReason"><h5>Reason For
+																	Rejection:</h5></label>
+															<textarea id="rejectionReason" class="form-control"
+																name="rejectionReason"></textarea>
+														</div>
+													</form>
+													<div id="errorMessage" class="text-danger mt-2"></div>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-bs-dismiss="modal">Close</button>
+													<button type="button" class="btn btn-primary"
+														id="submitRejection">Reject</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				
+
 			</div>
 
 			<!-- partial:partials/_footer.html -->
@@ -166,32 +211,49 @@
 	</div>
 
 	<!-- core:js -->
-	<script src="adminresources/js/core.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/core.js"></script>
 	<!-- endinject -->
 
 	<!-- Plugin js for this page -->
-	<script src="adminresources/js/jquery.dataTables.js"></script>
-	<script src="adminresources/js/dataTables.bootstrap5.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/jquery.dataTables.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/dataTables.bootstrap5.js"></script>
 	<!-- End plugin js for this page -->
 
 	<!-- inject:js -->
-	<script src="adminresources/js/feather.min.js"></script>
-	<script src="adminresources/js/template.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/feather.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/template.js"></script>
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-	<script src="adminresources/js/data-table.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/data-table.js"></script>
 	<!-- End custom js for this page -->
 
 	<!-- Plugin js for this page -->
-	<script src="adminresources/js/sweetalert2.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/sweetalert2.min.js"></script>
 	<!-- End plugin js for this page -->
 
 	<!-- Custom js for this page -->
-<!-- 	<script src="adminresources/js/sweet-alert.js"></script> -->
+	<!-- 	<script src="<%=request.getContextPath()%>/adminresources/js/sweet-alert.js"></script> -->
 	<!-- End custom js for this page -->
 
+	<!-- Plugin js for this page -->
+	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.validate.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.inputmask.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/select2.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/typeahead.bundle.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.tagsinput.min.js"></script>
+	
+	<!-- End plugin js for this page -->
+
+
 	<!-- Custom javascript for filterting -->
-	<script src="adminresources/js/custom/filterDoctors.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/custom/filterDoctors.js"></script>
 </body>
 </html>

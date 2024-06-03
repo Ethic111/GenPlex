@@ -15,7 +15,7 @@ select {
 }
 
 .auth-page .auth-side-wrapper {
-	background-image: url(../images/img6.jpg);
+	background-image: url(../images/LoginRegisterImg.png);
 }
 
 /* .link-title{
@@ -24,4 +24,14 @@ select {
  */
 .link-icon{
 	font-size:1.2rem;
+}
+@media (min-width: 1200px) {
+    .col-xl-6 {
+        flex: 0 0 auto;
+        width: 63%;
+    }
+    .registrationCard{
+    	flex: 0 0 auto;
+        width: 82%;
+    }
 }

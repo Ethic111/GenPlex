@@ -1,5 +1,6 @@
 $(function() {
-	// validate add state form on keyup and submit
+	
+	// Validate add state form on keyup and submit
 	$("#doctorRegistrationForm").validate({
 		rules : {
 			doctorName : {
@@ -7,48 +8,46 @@ $(function() {
 				minlength : 3
 			},
 			email : {
-				required : true
+				required : true,
+				email : true
 			},
 			stateId : {
 				required : true,
-				min : 0
+				min : 1
 			},
 			cityId : {
 				required : true,
-				min : 0
+				min : 1
 			},
 			degreeId : {
 				required : true,
-				min:0
+				min : 1
 			}
 		},
 		messages : {
 			doctorName : {
-				required : "Please enter a your name",
+				required : "Please enter your name",
 				minlength : "Name must consist of at least 3 characters"
 			},
-			age : {
-				required : "Please enter a your age",
-				minlength : "Age must consist of at least 2 digits"
+			email : {
+				required : "Please enter your email",
+				email : "Please enter a valid email address"
 			},
 			stateId : {
 				required : "Please select your state",
-				min : "",
+				min : "Please select a valid state"
 			},
 			cityId : {
 				required : "Please select your city",
-				min : "",
+				min : "Please select a valid city"
 			},
 			degreeId : {
-				required : "Please enter a your degree",
-				min:""
+				required : "Please select your degree",
+				min : "Please select a valid degree"
 			}
-
-		},
-
+		}
 	});
 });
-
 // ////////////////// Custom state and city options
 // ////////////////////////////////
 
@@ -73,14 +72,14 @@ document
 
 					citySelect.addEventListener('change', function() {
 						var cityId = citySelect.value;
-						if (cityId >0) {
+						if (cityId > 0) {
 							updateState(cityId);
 						}
 					});
 
 					function updateCities(stateId) {
 						var xhr = new XMLHttpRequest();
-						xhr.open('GET', '/api/cities?state='
+						xhr.open('GET', 'api/cities?state='
 								+ encodeURIComponent(stateId), true);
 						xhr.onload = function() {
 							if (xhr.status === 200) {
@@ -104,23 +103,4 @@ document
 						xhr.send();
 					}
 
-					/*function updateState(cityId) {
-						var xhr = new XMLHttpRequest();
-						xhr.open('GET', '/api/state?city='
-								+ encodeURIComponent(cityId), true);
-						xhr.onload = function() {
-							if (xhr.status === 200) {
-								 var state = JSON.parse(xhr.responseText); 
-								stateSelect.value = xhr.responseText;
-								 updateCities(state.stateName); 
-							} else {
-								console.error('Error fetching state: '
-										+ xhr.status);
-							}
-						};
-						xhr.onerror = function() {
-							console.error('Request error...');
-						};
-						xhr.send();
-					}*/
 				});
