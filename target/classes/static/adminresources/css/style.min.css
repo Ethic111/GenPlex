@@ -15,7 +15,7 @@ select {
 }
 
 .auth-page .auth-side-wrapper {
-	background-image: url(../images/LoginRegisterImg.png);
+	background-image: url("https://i.ibb.co/PQtBbXT/Blue-Simple-Illustrative-Health-Poster.png");
 }
 
 /* .link-title{
@@ -28,10 +28,15 @@ select {
 @media (min-width: 1200px) {
     .col-xl-6 {
         flex: 0 0 auto;
-        width: 63%;
+        width: 62%;
     }
     .registrationCard{
     	flex: 0 0 auto;
-        width: 82%;
+        width: 81%;
     }
+}
+
+.completeProfile{
+	margin-left:0px!important;
+	justify-content:center;
 }

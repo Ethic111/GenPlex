@@ -1,6 +1,8 @@
-<nav class="sidebar ">
+<nav class="sidebar">
 	<div class="sidebar-header">
-		<a href="#" class="sidebar-brand"> Gen<span>Plex</span>
+		<a href="index" class="sidebar-brand"> <!--  Gen<span>Plex</span> -->
+			<img src="https://i.ibb.co/Jxycj0s/Screenshot-2024-06-03-151706.png"
+			style="width: 168px; height: 36px; margin-left: -22px;" />
 		</a>
 		<div class="sidebar-toggler not-active">
 			<span></span> <span></span> <span></span>
@@ -9,63 +11,23 @@
 	<div class="sidebar-body ">
 		<ul class="nav">
 
-			<li class="nav-item mb-3"><a href="/doctor" class="nav-link"> <i
-					class="link-icon menu-icon mdi mdi-home"></i> <span
+			<li class="nav-item mb-3"><a href="index" class="nav-link">
+					<i class="link-icon menu-icon mdi mdi-home"></i> <span
 					class="link-title"> Dashboard </span>
 			</a></li>
-			
-			<li class="nav-item mb-3"><a href="" class="nav-link">
-					<i class="link-icon mdi mdi-account-multiple-outline"></i> <span
-					class="link-title">Manage Patients</span>
+
+			<li class="nav-item mb-3"><a href="reports" class="nav-link menu-link">
+					<i class="link-icon mdi mdi-file-multiple"></i> <span
+					class="link-title">Manage Reports</span>
 			</a></li>
-			<li class="nav-item mb-3"><a href="" class="nav-link">
+			<!-- <li class="nav-item mb-3"><a href="reports" class="nav-link menu-link">
 					<i class="link-icon mdi mdi-file-multiple"></i> <span
 					class="link-title">Manage Report Types</span>
-			</a></li>
-			
-			
-
-			<!-- <li class="nav-item mb-3"><a href="states" class="nav-link">
-					<i class="link-icon mdi mdi-map-marker-radius"></i> <span
-					class="link-title">Manage State</span>
 			</a></li> -->
 
 
-			<!-- <li class="nav-item mb-3"><a href="cities" class="nav-link">
-					<i class="link-icon mdi mdi-city"></i> <span class="link-title">Manage
-						City</span>
-			</a></li> -->
 
-
-			
-			
-			<!-- <li class="nav-item mb-3"><a href="" class="nav-link">
-					<i class="link-icon mdi mdi-certificate"></i> <span class="link-title">Manage
-						Degree</span>
-			</a></li> -->
-
-			<!-- <li class="nav-item mb-3"><a class="nav-link"
-				data-bs-toggle="collapse" href="#patients" role="button"
-				aria-expanded="false" aria-controls="patients"> <i
-					class="link-icon mdi mdi-account-multiple-outline"></i><span
-					class="link-title">Manage Patients</span> <i class="link-arrow"
-					data-feather="chevron-down"></i>
-			</a>
-
-				<div class="collapse" id="patients">
-					<ul class="nav sub-menu">
-						<li class="nav-item mb-1"><a href="addPatient.jsp"
-							class="nav-link">Add Patient</a></li>
-						<li class="nav-item mb-1"><a href="viewPatients.jsp"
-							class="nav-link">View Patients</a></li>
-
-
-					</ul>
-				</div></li> -->
-			
-
-
-			<li class="nav-item mb-3"><a href="login" class="nav-link"><i
+			<li class="nav-item mb-3"><a href="/logout" class="nav-link"><i
 					class="link-icon mdi mdi-logout"></i> <span class="link-title">Logout</span>
 			</a></li>
 
@@ -73,3 +35,43 @@
 		</ul>
 	</div>
 </nav>
+<!-- core:js -->
+	<script src="<%=request.getContextPath()%>/adminresources/js/core.js"></script>
+	<!-- endinject -->
+
+	<!-- Plugin js for this page -->
+	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.validate.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/bootstrap-maxlength.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.inputmask.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/select2.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/typeahead.bundle.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.tagsinput.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/dropzone.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/dropify.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/pickr.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/moment.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/flatpickr.min.js"></script>
+	<!-- End plugin js for this page -->
+
+	<!-- inject:js -->
+	<script src="<%=request.getContextPath()%>/adminresources/js/feather.min.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/template.js"></script>
+	<!-- endinject -->
+
+	<!-- Custom js for this page -->
+	<script src="<%=request.getContextPath()%>/adminresources/js/form-validation.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/bootstrap-maxlength.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/inputmask.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/select2.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/typeahead.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/tags-input.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/dropzone.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/dropify.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/pickr.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/flatpickr.js"></script>
+	<!-- End custom js for this page -->
+
+<!-- Custom js -->
+<script
+	src="<%=request.getContextPath()%>/adminresources/js/custom/menuForProfile.js"></script>
+<!-- End Custom js -->

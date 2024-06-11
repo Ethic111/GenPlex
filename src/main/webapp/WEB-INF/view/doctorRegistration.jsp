@@ -58,9 +58,10 @@
 								</div>
 								<div class="col-md-8 ps-md-0">
 									<div class="auth-form-wrapper px-4 py-5">
-										<a href="#" class="noble-ui-logo d-block mb-2">Gen<span>Plex</span></a>
-										<h5 class="text-muted fw-normal mb-4">Doctor Registration</h5>
-										<f:form action="admin/insertRequestedDoctor" method="post"
+										
+										<h3 class="text-muted fw-normal mb-4">Doctor Registration</h3>
+										
+										<f:form action="insertRequestedDoctor" method="post"
 											modelAttribute="DoctorVO" id="doctorRegistrationForm">
 
 											<div class="row">
@@ -124,7 +125,7 @@
 
 													Register</button>
 											</div>
-											<a href="login" class="d-block mt-3 text-muted">Already a
+											<a href="/" class="d-block mt-3 text-muted">Already a
 												user? Sign in</a>
 										</f:form>
 

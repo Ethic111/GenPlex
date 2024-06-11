@@ -23,26 +23,28 @@
 <!-- End fonts -->
 
 <!-- core:css -->
-<link rel="stylesheet" href="adminresources/css/core.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/core.css" />
 <!-- endinject -->
 
 <!-- inject:css -->
-<link rel="stylesheet" href="adminresources/css/materialdesignicons.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/materialdesignicons.min.css">
 <!-- endinject -->
 
 
 <!-- Layout styles -->
-<link rel="stylesheet" href="adminresources/css/style.min.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/style.min.css" />
 <!-- End layout styles -->
 
-<link rel="shortcut icon" href="adminresources/images/favicon.png" />
+<link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/adminresources/images/genplexLOGO.png" />
 </head>
 <body>
 	<div class="main-wrapper">
-		<!-- partial:partials/_sidebar.html -->
+		<!-- partial:partialssidebar.html -->
 		<jsp:include page="menu.jsp"></jsp:include>
-
-
 
 		<!-- partial -->
 
@@ -50,6 +52,7 @@
 			<!-- partial:partials/_navbar.html -->
 			<!-- partial -->
 			<jsp:include page="header.jsp"></jsp:include>
+			<%-- 			<jsp:include page="../admin/header.jsp"></jsp:include> --%>
 
 
 			<div class="page-content">
@@ -443,7 +446,8 @@
 									<a href="javascript:;"
 										class="d-flex align-items-center border-bottom pb-3">
 										<div class="me-3">
-											<img src="adminresources/images/face2.jpg"
+											<img
+												src="<%=request.getContextPath()%>/adminresources/images/face2.jpg"
 												class="rounded-circle wd-35" alt="user" />
 										</div>
 										<div class="w-100">
@@ -456,7 +460,8 @@
 									</a> <a href="javascript:;"
 										class="d-flex align-items-center border-bottom py-3">
 										<div class="me-3">
-											<img src="adminresources/images/face3.jpg"
+											<img
+												src="<%=request.getContextPath()%>/adminresources/images/face3.jpg"
 												class="rounded-circle wd-35" alt="user" />
 										</div>
 										<div class="w-100">
@@ -470,7 +475,8 @@
 									</a> <a href="javascript:;"
 										class="d-flex align-items-center border-bottom py-3">
 										<div class="me-3">
-											<img src="adminresources/images/face4.jpg"
+											<img
+												src="<%=request.getContextPath()%>/adminresources/images/face4.jpg"
 												class="rounded-circle wd-35" alt="user" />
 										</div>
 										<div class="w-100">
@@ -483,7 +489,8 @@
 									</a> <a href="javascript:;"
 										class="d-flex align-items-center border-bottom py-3">
 										<div class="me-3">
-											<img src="adminresources/images/face5.jpg"
+											<img
+												src="<%=request.getContextPath()%>/adminresources/images/face5.jpg"
 												class="rounded-circle wd-35" alt="user" />
 										</div>
 										<div class="w-100">
@@ -496,7 +503,8 @@
 									</a> <a href="javascript:;"
 										class="d-flex align-items-center border-bottom py-3">
 										<div class="me-3">
-											<img src="adminresources/images/face6.jpg"
+											<img
+												src="<%=request.getContextPath()%>/adminresources/images/face6.jpg"
 												class="rounded-circle wd-35" alt="user" />
 										</div>
 										<div class="w-100">
@@ -626,26 +634,76 @@
 			</div>
 
 			<!-- partial:partials/_footer.html -->
-			<jsp:include page="../admin/footer.jsp"></jsp:include>
+			<jsp:include page="footer.jsp"></jsp:include>
 			<!-- partial -->
 		</div>
 	</div>
 
 	<!-- core:js -->
-	<script src="adminresources/js/core.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/core.js"></script>
 	<!-- endinject -->
 
 	<!-- Plugin js for this page -->
-	<script src="adminresources/js/apexcharts.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/jquery.validate.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/bootstrap-maxlength.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/jquery.inputmask.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/select2.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/typeahead.bundle.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/jquery.tagsinput.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/dropzone.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/dropify.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/pickr.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/moment.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/flatpickr.min.js"></script>
 	<!-- End plugin js for this page -->
 
 	<!-- inject:js -->
-	<script src="adminresources/js/feather.min.js"></script>
-	<script src="adminresources/js/template.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/feather.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/template.js"></script>
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-	<script src="adminresources/js/dashboard-light.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/form-validation.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/bootstrap-maxlength.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/inputmask.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/select2.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/typeahead.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/tags-input.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/dropzone.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/dropify.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/pickr.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/flatpickr.js"></script>
 	<!-- End custom js for this page -->
+
+
+	<!-- Custom js -->
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/custom/menuForProfile.js"></script>
+	<!-- End Custom js -->
+
+
+
 </body>
 </html>

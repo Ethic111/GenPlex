@@ -15,6 +15,6 @@ public interface DoctorDAO {
 	
 	List<DoctorVO> filterByReviewStatus(DoctorReviewStatus review);
 	
-	DoctorVO searchByUnPwd(String logUsername,String logPassword);
+	DoctorVO searchByUn(String logUsername);
 
 }

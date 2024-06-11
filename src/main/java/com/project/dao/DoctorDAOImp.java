@@ -74,15 +74,14 @@ public class DoctorDAOImp implements DoctorDAO {
 		return searchList;
 	}
 
-	public DoctorVO searchByUnPwd(String logUsername, String logPassword) {
+	public DoctorVO searchByUn(String logUsername) {
 		DoctorVO reqDocvo = new DoctorVO();
 		Session session = this.sessionFactory.getCurrentSession();
 		// System.out.println(id);
 		Query q = session.createQuery(
-				"from DoctorVO where status = true and reviewStatus =:reviewAccepted and email =:loginun and password =:loginpwd");
+				"from DoctorVO where status = true and reviewStatus =:reviewAccepted and email =:loginun");
 		q.setParameter("reviewAccepted", DoctorReviewStatus.ACCEPTED);
 		q.setParameter("loginun", logUsername);
-		q.setParameter("loginpwd", logPassword);
 		List<DoctorVO> searchList = q.list();
 
 		if (searchList.size() > 0) {

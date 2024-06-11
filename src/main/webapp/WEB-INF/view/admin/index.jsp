@@ -23,20 +23,24 @@
 <!-- End fonts -->
 
 <!-- core:css -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/core.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/core.css" />
 <!-- endinject -->
 
 <!-- inject:css -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/materialdesignicons.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/materialdesignicons.min.css">
 <!-- endinject -->
 
 
 <!-- Layout styles -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/adminresources/css/style.min.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/style.min.css" />
 <!-- End layout styles -->
 
 <%-- <link rel="shortcut icon" href="<%=request.getContextPath()%>/adminresources/images/favicon.png" /> --%>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/adminresources/images/genplexLOGO.png" />
+<link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/adminresources/images/genplexLOGO.png" />
 </head>
 <body>
 	<div class="main-wrapper">
@@ -444,7 +448,8 @@
 									<a href="javascript:;"
 										class="d-flex align-items-center border-bottom pb-3">
 										<div class="me-3">
-											<img src="<%=request.getContextPath()%>/adminresources/images/face2.jpg"
+											<img
+												src="<%=request.getContextPath()%>/adminresources/images/face2.jpg"
 												class="rounded-circle wd-35" alt="user" />
 										</div>
 										<div class="w-100">
@@ -457,7 +462,8 @@
 									</a> <a href="javascript:;"
 										class="d-flex align-items-center border-bottom py-3">
 										<div class="me-3">
-											<img src="<%=request.getContextPath()%>/adminresources/images/face3.jpg"
+											<img
+												src="<%=request.getContextPath()%>/adminresources/images/face3.jpg"
 												class="rounded-circle wd-35" alt="user" />
 										</div>
 										<div class="w-100">
@@ -471,7 +477,8 @@
 									</a> <a href="javascript:;"
 										class="d-flex align-items-center border-bottom py-3">
 										<div class="me-3">
-											<img src="<%=request.getContextPath()%>/adminresources/images/face4.jpg"
+											<img
+												src="<%=request.getContextPath()%>/adminresources/images/face4.jpg"
 												class="rounded-circle wd-35" alt="user" />
 										</div>
 										<div class="w-100">
@@ -484,7 +491,8 @@
 									</a> <a href="javascript:;"
 										class="d-flex align-items-center border-bottom py-3">
 										<div class="me-3">
-											<img src="<%=request.getContextPath()%>/adminresources/images/face5.jpg"
+											<img
+												src="<%=request.getContextPath()%>/adminresources/images/face5.jpg"
 												class="rounded-circle wd-35" alt="user" />
 										</div>
 										<div class="w-100">
@@ -497,7 +505,8 @@
 									</a> <a href="javascript:;"
 										class="d-flex align-items-center border-bottom py-3">
 										<div class="me-3">
-											<img src="<%=request.getContextPath()%>/adminresources/images/face6.jpg"
+											<img
+												src="<%=request.getContextPath()%>/adminresources/images/face6.jpg"
 												class="rounded-circle wd-35" alt="user" />
 										</div>
 										<div class="w-100">
@@ -636,17 +645,41 @@
 	<script src="<%=request.getContextPath()%>/adminresources/js/core.js"></script>
 	<!-- endinject -->
 
+	<!-- Custom js for this page -->
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/bootstrap-maxlength.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/inputmask.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/select2.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/typeahead.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/tags-input.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/dropzone.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/dropify.js"></script>
+	<script src="<%=request.getContextPath()%>/adminresources/js/pickr.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/flatpickr.js"></script>
+	<!-- End custom js for this page -->
+
 	<!-- Plugin js for this page -->
-	<script src="<%=request.getContextPath()%>/adminresources/js/apexcharts.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/apexcharts.min.js"></script>
 	<!-- End plugin js for this page -->
 
 	<!-- inject:js -->
-	<script src="<%=request.getContextPath()%>/adminresources/js/feather.min.js"></script>
-	<script src="<%=request.getContextPath()%>/adminresources/js/template.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/feather.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/template.js"></script>
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-	<script src="<%=request.getContextPath()%>/adminresources/js/dashboard-light.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/dashboard-light.js"></script>
 	<!-- End custom js for this page -->
 </body>
 </html>

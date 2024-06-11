@@ -17,6 +17,7 @@ import com.project.service.DegreeService;
 @Controller
 public class DegreeController {
 	
+
 	private DegreeService degreeService;
 
 	public DegreeController(DegreeService degreeService) {
@@ -25,7 +26,7 @@ public class DegreeController {
 	
 	
 	@GetMapping(value = "admin/degrees")
-	public ModelAndView addCity() {
+	public ModelAndView degrees() {
 		List<DegreeVo> degreeList = this.degreeService.search();
 		return new ModelAndView("admin/viewDegree","degreeList",degreeList);
 	}
@@ -57,5 +58,6 @@ public class DegreeController {
 		return new ModelAndView("admin/addDegree","DegreeVo",degreeVo);
 		
 	}
-
+	
+	
 }

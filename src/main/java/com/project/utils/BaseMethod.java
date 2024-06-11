@@ -70,5 +70,7 @@ public class BaseMethod {
 		}
 		return password.toString();
 	}
+	
+	
 
 }

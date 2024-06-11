@@ -19,5 +19,5 @@ public interface DoctorService {
 	
 	Response filterByReviewStatus(String review);
 	
-	DoctorVO searchByUnPwd(String logUsername,String logPassword);
+	DoctorVO searchByUn(String logUsername);
 }

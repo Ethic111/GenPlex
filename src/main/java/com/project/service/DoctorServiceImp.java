@@ -25,14 +25,8 @@ public class DoctorServiceImp implements DoctorService {
 	@Value("${email.subject}")
 	private String emailSubject;
 
-	@Value("${email.accept.body}")
-	private String emailBody;
-
 	@Value("${email.rejected.subject}")
 	private String rejectedEmailSubject;
-
-	@Value("${email.rejected.body}")
-	private String rejectedEmailBody;
 
 	@Value("${email.approval.path}")
 	private String approvalEmailPath;
@@ -137,6 +131,7 @@ public class DoctorServiceImp implements DoctorService {
 		DoctorVO reqDocVo = this.doctorDAO.seachById(id);
 		return reqDocVo;
 	}
+	
 
 	public Response filterByReviewStatus(String review) {
 
@@ -157,8 +152,8 @@ public class DoctorServiceImp implements DoctorService {
 		return response;
 	}
 
-	public DoctorVO searchByUnPwd(String logUsername, String logPassword) {
-		DoctorVO reqdocvo = this.doctorDAO.searchByUnPwd(logUsername, logPassword);
+	public DoctorVO searchByUn(String logUsername) {
+		DoctorVO reqdocvo = this.doctorDAO.searchByUn(logUsername);
 		return reqdocvo;
 	}
 }

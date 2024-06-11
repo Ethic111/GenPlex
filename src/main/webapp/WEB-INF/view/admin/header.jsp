@@ -13,7 +13,7 @@
 			</a>
 				<div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
 					<ul class="list-unstyled p-1">
-						<li class="dropdown-item py-2"><a href="login"
+						<li class="dropdown-item py-2"><a href="/logout"
 							class="text-body ms-0"> <i
 								class="me-1 icon-md mdi mdi-logout"></i> <span>Log
 									Out</span>

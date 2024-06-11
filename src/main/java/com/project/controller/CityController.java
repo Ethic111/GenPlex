@@ -68,6 +68,7 @@ public class CityController {
 	@GetMapping(value = "api/cities")
 	@ResponseBody
 	public ResponseEntity<List<CityVo>> apiCities(@RequestParam("state") int stateId) {
+		System.out.println(stateId);
 		List<CityVo> cityList = this.cityService.getCitiesByStateID(stateId);
 		return ResponseEntity.ok(cityList);
 

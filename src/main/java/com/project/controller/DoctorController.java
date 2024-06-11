@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,7 +26,7 @@ import com.project.service.DegreeService;
 import com.project.service.DoctorService;
 import com.project.service.Response;
 import com.project.service.StateService;
-
+import com.project.utils.BaseMethod;
 
 @Controller
 public class DoctorController {
@@ -34,13 +35,15 @@ public class DoctorController {
 	private StateService stateService;
 	private CityService cityService;
 	private DegreeService degreeService;
+	private BaseMethod basemethod;
 
-	public DoctorController(DoctorService doctorRequestService, StateService stateService,
-			CityService cityService, DegreeService degreeService) {
+	public DoctorController(DoctorService doctorRequestService, StateService stateService, CityService cityService,
+			DegreeService degreeService, BaseMethod basemethod) {
 		this.doctorRequestService = doctorRequestService;
 		this.stateService = stateService;
 		this.cityService = cityService;
 		this.degreeService = degreeService;
+		this.basemethod = basemethod;
 	}
 
 	@GetMapping(value = "registerDoctor")
@@ -49,17 +52,17 @@ public class DoctorController {
 		List<CityVo> cityList = this.cityService.search();
 		List<DegreeVo> degreeList = this.degreeService.search();
 
-		return new ModelAndView("doctorRegistration", "DoctorVO", new DoctorVO())
-				.addObject("stateList", stateList).addObject("cityList", cityList).addObject("degreeList", degreeList);
+		return new ModelAndView("doctorRegistration", "DoctorVO", new DoctorVO()).addObject("stateList", stateList)
+				.addObject("cityList", cityList).addObject("degreeList", degreeList);
 	}
 
-	@PostMapping(value = "admin/insertRequestedDoctor")
+	@PostMapping(value = "insertRequestedDoctor")
 	public ModelAndView insertRequestedDoctor(@ModelAttribute DoctorVO requestedDoctorVo) {
 		requestedDoctorVo.setStatus(true);
+		requestedDoctorVo.setProfileStatus(false);
 		requestedDoctorVo.setReviewStatus(DoctorReviewStatus.NOT_REVIEWED);
-		
 		this.doctorRequestService.save(requestedDoctorVo);
-		return new ModelAndView("redirect:registerDoctor");
+		return new ModelAndView("redirect:/registerDoctor");
 	}
 
 	@GetMapping(value = "admin/doctors")
@@ -96,15 +99,35 @@ public class DoctorController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	@PostMapping(value = "admin/saveDoctorRegFurtherDetails")
-	public ModelAndView saveDoctorRegFurtherDetails(@ModelAttribute DoctorVO requestedDoctorVo,
-			HttpSession session) {
-		/* System.out.println(requestedDoctorVo.getDoctorName()); */
-		int age = requestedDoctorVo.getAge();
-		DoctorVO reqDocVo = (DoctorVO) session.getAttribute("doctorInfo");
-		reqDocVo.setAge(age);
-		this.doctorRequestService.save(reqDocVo);
-		session.removeAttribute("doctorInfo");
-		return new ModelAndView("redirect:doctor");
+	@GetMapping(value = "doctor/profile")
+	public ModelAndView profile() {
+		String doctorUN = BaseMethod.getUsername();
+		DoctorVO doctorvo = this.doctorRequestService.searchByUn(doctorUN);
+
+		if (doctorvo.isProfileStatus()) {
+
+			return new ModelAndView("doctor/profile", "doctorvo", doctorvo);
+		} else {
+			return new ModelAndView("doctor/completeProfile", "doctorvo", doctorvo);
+		}
 	}
+
+	@GetMapping(value = "api/profileStatus")
+	@ResponseBody
+	public ResponseEntity<Boolean> apiProfileStatus() {
+		String username = BaseMethod.getUsername();
+		DoctorVO doctorvo = this.doctorRequestService.searchByUn(username);
+		return ResponseEntity.ok(doctorvo.isProfileStatus());
+
+	}
+
+	@GetMapping(value = "api/completeProfile")
+	@ResponseBody
+	public ResponseEntity<Boolean> apiCompleteProfile() {
+		String username = BaseMethod.getUsername();
+		DoctorVO doctorvo = this.doctorRequestService.searchByUn(username);
+		return ResponseEntity.ok(doctorvo.isProfileStatus());
+
+	}
+
 }

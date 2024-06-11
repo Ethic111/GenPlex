@@ -47,14 +47,24 @@ public class DoctorVO {
 	@Enumerated(EnumType.STRING)
 	private DoctorReviewStatus reviewStatus;
 
-	private boolean status;
-
-	// For form 2:
-
 	@Column(name = "age")
 	private int age;
 
-	//
+	@Column(name = "certificate_path")
+	private String certificatePath;
+
+	@Column(name = "address_proof_path")
+	private String addressProofPath;
+
+	@Column(name = "government_id_path")
+	private String governmentIdPath;
+
+	@Column(name = "profile_photo_path")
+	private String profilePhotoPath;
+
+	private boolean status;
+
+	private boolean profileStatus;
 
 	public int getId() {
 		return id;
@@ -128,14 +138,52 @@ public class DoctorVO {
 		this.reason = reason;
 	}
 
-	///////////////////////////
-
 	public int getAge() {
 		return age;
 	}
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public boolean isProfileStatus() {
+		return profileStatus;
+	}
+
+	public void setProfileStatus(boolean profileStatus) {
+		this.profileStatus = profileStatus;
+	}
+
+	public String getCertificatePath() {
+		return certificatePath;
+	}
+
+	public void setCertificatePath(String certificatePath) {
+		this.certificatePath = certificatePath;
+	}
+
+	public String getAddressProofPath() {
+		return addressProofPath;
+	}
+
+	public void setAddressProofPath(String addressProofPath) {
+		this.addressProofPath = addressProofPath;
+	}
+
+	public String getGovernmentIdPath() {
+		return governmentIdPath;
+	}
+
+	public void setGovernmentIdPath(String governmentIdPath) {
+		this.governmentIdPath = governmentIdPath;
+	}
+
+	public String getProfilePhotoPath() {
+		return profilePhotoPath;
+	}
+
+	public void setProfilePhotoPath(String profilePhotoPath) {
+		this.profilePhotoPath = profilePhotoPath;
 	}
 
 }

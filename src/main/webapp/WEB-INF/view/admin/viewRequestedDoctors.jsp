@@ -124,7 +124,11 @@
 												<th>State Name</th>
 												<th>City Name</th>
 												<th>Degree</th>
+												<!-- <th>Certification</th>
+												<th>Address Proof</th>
+												<th>Government ID</th> -->
 												<th>Action</th>
+
 											</tr>
 										</thead>
 										<tbody id="data-table-body">
@@ -135,6 +139,20 @@
 													<td>${i.statevo.stateName}</td>
 													<td>${i.cityvo.cityName}</td>
 													<td>${i.degreevo.degreeName}</td>
+													<c:if test="${i.reviewStatus == 'ACCEPTED'}">
+														<td><a class="download-link" href="#"
+															data-file-path="${i.certificatePath}"><i
+																class="mdi mdi-download"
+																style="color: blue; font-size: 1.5rem;"></i></a> <a
+															class="download-link" href="#"
+															data-file-path="${i.addressProofPath}"><i
+																class="mdi mdi-download"
+																style="color: blue; font-size: 1.5rem;"></i></a> <a
+															class="download-link" href="#"
+															data-file-path="${i.governmentIdPath}"><i
+																class="mdi mdi-download"
+																style="color: blue; font-size: 1.5rem;"></i></a></td>
+													</c:if>
 													<td><c:choose>
 															<c:when test="${i.reviewStatus == 'ACCEPTED'}">
 																<a href="deleteDoctor?id=${i.id}"><i
@@ -146,8 +164,8 @@
 																	<button class="btn btn-success">Accept</button>
 																</a> --%>
 
-																<button class="btn btn-success accept-btn" id="submitAcception"
-																	onclick="acceptDoctor(${i.id})">Accept</button>
+																<button class="btn btn-success accept-btn"
+																	id="submitAcception" onclick="acceptDoctor(${i.id})">Accept</button>
 
 																<!-- doctorRejected?id=${i.id} -->
 
@@ -158,7 +176,20 @@
 
 															</c:otherwise>
 														</c:choose></td>
-													<!-- 	<td>hi</td> -->
+													<%-- <c:if test="${i.reviewStatus == 'ACCEPTED'}">
+														<td><a
+															href="downloadFile?filePath=${i.certificatePath}"><i
+																class="mdi mdi-download"
+																style="color: blue; font-size: 1.5rem;"></i></a></td>
+														<td><a
+															href="downloadFile?filePath=${i.addressProofPath}"><i
+																class="mdi mdi-download"
+																style="color: blue; font-size: 1.5rem;"></i></a></td>
+														<td><a
+															href="downloadFile?filePath=${i.governmentIdPath}"><i
+																class="mdi mdi-download"
+																style="color: blue; font-size: 1.5rem;"></i></a></td>
+													</c:if> --%>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -176,8 +207,9 @@
 												<div class="modal-body">
 													<form id="rejectionForm">
 														<div class="form-group">
-															<label for="rejectionReason"><h5>Reason For
-																	Rejection:</h5></label>
+															<label for="rejectionReason"><h5>
+																	Reason For Rejection:<i class="text-danger">*</i>
+																</h5></label>
 															<textarea id="rejectionReason" class="form-control"
 																name="rejectionReason"></textarea>
 														</div>
@@ -243,12 +275,17 @@
 	<!-- End custom js for this page -->
 
 	<!-- Plugin js for this page -->
-	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.validate.min.js"></script>
-	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.inputmask.min.js"></script>
-	<script src="<%=request.getContextPath()%>/adminresources/js/select2.min.js"></script>
-	<script src="<%=request.getContextPath()%>/adminresources/js/typeahead.bundle.min.js"></script>
-	<script src="<%=request.getContextPath()%>/adminresources/js/jquery.tagsinput.min.js"></script>
-	
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/jquery.validate.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/jquery.inputmask.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/select2.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/typeahead.bundle.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/jquery.tagsinput.min.js"></script>
+
 	<!-- End plugin js for this page -->
 
 
