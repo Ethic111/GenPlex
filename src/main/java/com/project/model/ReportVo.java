@@ -2,6 +2,7 @@ package com.project.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,22 +38,18 @@ public class ReportVo {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "date")
 	private Date date;
-	
-	@NotNull(message = "Patient is required")
-	@ManyToOne
-	@JoinColumn(name = "patient_id")
-	private PatientVo patientvo;
-	
-	@ManyToOne
-	@JoinColumn(name = "doctor_id")
-	private DoctorVO doctorvo;
 
+	
+	@ManyToOne
+	@JoinColumn(name = "patient_doctor_id")
+	private PatientDoctorMappingVO patientdoctorvo;
+	
 	@NotNull(message = "State is required")
 	@ManyToOne
 	@JoinColumn(name = "state_id")
 	private StateVo statevo;
 
-	@NotNull(message = "City is required")
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private CityVo cityvo;
@@ -94,17 +91,25 @@ public class ReportVo {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
-	public PatientVo getPatientvo() {
-		return patientvo;
-	}
-
-	public void setPatientvo(PatientVo patientvo) {
-		this.patientvo = patientvo;
-	}
+//
+//	public PatientVo getPatientvo() {
+//		return patientvo;
+//	}
+//
+//	public void setPatientvo(PatientVo patientvo) {
+//		this.patientvo = patientvo;
+//	}
 
 	public StateVo getStatevo() {
 		return statevo;
+	}
+
+	public PatientDoctorMappingVO getPatientdoctorvo() {
+		return patientdoctorvo;
+	}
+
+	public void setPatientdoctorvo(PatientDoctorMappingVO patientdoctorvo) {
+		this.patientdoctorvo = patientdoctorvo;
 	}
 
 	public void setStatevo(StateVo statevo) {
@@ -134,14 +139,14 @@ public class ReportVo {
 	public void setReportPath(String reportPath) {
 		this.reportPath = reportPath;
 	}
-
-	public DoctorVO getDoctorvo() {
-		return doctorvo;
-	}
-
-	public void setDoctorvo(DoctorVO doctorvo) {
-		this.doctorvo = doctorvo;
-	}
+//
+//	public DoctorVO getDoctorvo() {
+//		return doctorvo;
+//	}
+//
+//	public void setDoctorvo(DoctorVO doctorvo) {
+//		this.doctorvo = doctorvo;
+//	}
 
 	
 }

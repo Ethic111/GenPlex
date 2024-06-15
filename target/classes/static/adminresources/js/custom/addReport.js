@@ -26,9 +26,9 @@ $(document).ready(function() {
 				required : true,
 				min : 1
 			},
-			patientId : {
+			patientEmail : {
 				required : true,
-				min : 1
+				email : true
 			},
 			reportFile : {
 				required : true,
@@ -56,9 +56,9 @@ $(document).ready(function() {
 				required : "Please select your city",
 				min : "Please select a valid city"
 			},
-			patientId : {
+			patientEmail : {
 				required : "Please select the patient",
-				min : "Please select a valid patient"
+				email : "Please select a valid patient"
 			},
 			reportFile : {
 				required : "Please upload the report file",
@@ -114,6 +114,66 @@ $(document).ready(function() {
 	// });
 	// }
 	// });
+	
+	
+
+	/*$(document).on('keyup', '.select2-search__field', function (e) {
+		if (e.which === 13) {
+	        const stateId = $('#state_select').val();
+	        const cityId = $('#city_select').val();
+	        const patientEmail = $('.select2-search__field').val().trim();
+
+	        // Validate state and city selection
+	        if (stateId <= 0) {
+	            showError('Please select a state.');
+	            return;
+	        } else {
+	            clearError();
+	        }
+
+	        if (cityId <= 0) {
+	            showError('Please select a city.');
+	            return;
+	        } else {
+	            clearError();
+	        }
+
+	        if (patientEmail === '') {
+	            return;
+	        }
+
+	        // Trigger AJAX request to insert the new patient into the database
+            $.ajax({
+                url: 'http://localhost:7072/doctor/insertPatient',
+                type: 'POST',
+                data: {
+                    patientEmail: patientEmail,
+                    stateId: stateId,
+                    cityId: cityId
+                },
+                success: function(response) {
+                    console.log('Patient inserted successfully:', response);
+                    // Add the new patient to the select options
+                    $('#patient_select').append(new Option(response.email, response.id, true, true)).trigger('change');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error inserting patient:', error);
+                    console.log(xhr.responseText); // Log the server response
+                }
+            });
+	    }
+		
+		function showError(message, field) {
+	        $('<span class="text-danger">' + message + '</span>').insertAfter('#' + field);
+	    }
+
+	    function clearError(field) {
+	        $('#' + field).next('.text-danger').remove();
+	    }
+	});
+	
+	*/
+	
 });
 
 function updateCities(stateId, citySelect) {
@@ -137,34 +197,4 @@ function updateCities(stateId, citySelect) {
 	xhr.send();
 }
 
-/*
- * $(document).ready( function() { // Initialize Select2 for patient dropdown
- * $('#patient_select').select2({ tags : true, // Allow for custom tags
- * createTag : function(params) { return { id : params.term, text : params.term,
- * newOption : true }; }, insertTag : function(data, tag) { data.push(tag); }
- * }).on( 'select2:select', function(e) { var selectedOption = e.params.data;
- * 
- * if (selectedOption.newOption) { // The selected patient is a new entry, call
- * the // patient insertion API var patientEmail = selectedOption.id; var
- * stateId = $('#state_select').val(); var cityId = $('#city_select').val();
- * 
- * $.ajax({ type : "POST", url : "/insertPatient", data : { patientEmail :
- * patientEmail, stateId : stateId, cityId : cityId }, success :
- * function(response) { // Patient inserted successfully, update the // dropdown
- * with the new patient's ID var newOption = new Option(response.email,
- * response.id, true, true); $('#patient_select').append(newOption)
- * .trigger('change');
- *  // Remove the data attribute to prevent // recursive addition
- * $('#patient_select option:selected') .removeData('newOption');
- *  // Reload the page to update the dropdown // values without losing other
- * inputs reloadPageWithInputs(); }, error : function(xhr, status, error) { //
- * Handle error console.error("Error inserting patient: " + error); } }); } });
- * 
- * function reloadPageWithInputs() { var url = new URL(window.location.href);
- * var formData = $('#addReportForm').serializeArray();
- * formData.forEach(function(field) { url.searchParams.set(field.name,
- * field.value); }); window.location.href = url.href; }
- *  // Initialize flatpickr on the input fields with data-input // attribute
- * $("#reportDate").flatpickr({ dateFormat : "Y-m-d", });
- *  // Initialize select2 for select elements $('.form-select').select2(); });
- */
+

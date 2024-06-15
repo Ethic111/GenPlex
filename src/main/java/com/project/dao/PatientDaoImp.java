@@ -19,6 +19,10 @@ public class PatientDaoImp implements PatientDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	public Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+
 	public void save(PatientVo patientVo) {
 
 		Session session = sessionFactory.getCurrentSession();
@@ -34,6 +38,17 @@ public class PatientDaoImp implements PatientDao {
 		return searchList;
 	}
 
+	public List<PatientVo> seachByFilterValue(int value) {
+		Session session = sessionFactory.getCurrentSession();
+		Query q = session
+				.createQuery("from PatientVo where status = true and (statevo.id = :value or cityvo.id = :value)");
+		q.setParameter("value", value);
+		List<PatientVo> searchList = q.list();
+		System.out.println(searchList);
+		return searchList;
+	}
+
+	
 	public PatientVo searchById(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from PatientVo where status = true and id =" + id);
@@ -43,6 +58,18 @@ public class PatientDaoImp implements PatientDao {
 			patientvo = searchList.get(0);
 		}
 		return patientvo;
+	}
+
+	public PatientVo searchByEmail(String pemail) {
+		Session session = sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from PatientVo where status = true and email =:pemail");
+		q.setParameter("pemail", pemail);
+		List<PatientVo> searchList = q.list();
+		PatientVo patientvo = new PatientVo();
+		if (searchList.size() > 0) {
+			return searchList.get(0);
+		}
+		return null;
 	}
 
 }

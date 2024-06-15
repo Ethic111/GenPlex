@@ -10,6 +10,8 @@ public interface DoctorService {
 	void save(DoctorVO requestedDoctorVo);
 
 	List<DoctorVO> search();
+	
+	List<DoctorVO> searchAcceptedDoctors();
 
 	void doctorApproved(int id, DoctorVO reqDoctvo);
 	

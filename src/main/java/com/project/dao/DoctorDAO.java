@@ -10,6 +10,8 @@ public interface DoctorDAO {
 	void save(DoctorVO requestedDoctorVo);
 	
 	List<DoctorVO> search();
+	
+	List<DoctorVO> searchAcceptedDoctors();
 
 	DoctorVO seachById(int id);
 	

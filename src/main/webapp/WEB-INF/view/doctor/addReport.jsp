@@ -132,6 +132,7 @@
 												</c:forEach>
 											</f:select>
 											<f:errors path="statevo.id" cssClass="text-danger" />
+											<div id="error_message" style="color: red; display: none;"></div>
 										</div>
 										<div class="col-6 mb-3">
 											<label for="cityname" class="form-label">City Name<i
@@ -144,18 +145,31 @@
 												</c:forEach>
 											</f:select>
 											<f:errors path="cityvo.id" cssClass="text-danger" />
+											<div id="error_message" style="color: red; display: none;"></div>
 										</div>
 										<div class="col-6 mb-3">
-                                            <label for="patientname" class="form-label">Patient Username<i class="text-danger">*</i></label>
-                                            <f:select class="form-select" name="patientId"
-                                                id="patient_select" path="patientvo.id">
-                                                <f:option value="-1" label="Select Patient" />
-                                                <c:forEach items="${patientList}" var="i" varStatus="j">
-                                                    <f:option value="${i.id}">${i.email}</f:option>
-                                                </c:forEach>
-                                            </f:select>
-                                            <f:errors path="patientvo.id" cssClass="text-danger" />
-                                        </div>
+											<label class="form-label">Patient Username<i
+												class="text-danger">*</i></label>
+											<div id="the-basics">
+												<input class="form-control" autocomplete="off" type="text"
+													placeholder="Select a Patient" id="patientTypehead"
+													name="patientEmail">
+											</div>
+
+										</div>
+										<%-- <div class="col-6 mb-3">
+											<label for="patientname" class="form-label">Patient
+												Username<i class="text-danger">*</i>
+											</label> <select class="form-select" name="patientEmail"
+												id="patient_select">
+												<option value="">Select Patient</option>
+												<c:forEach items="${patientDoctorMappingList}" var="i"
+													varStatus="j">
+													<option value="${i.patientvo.email}">${i.patientvo.email}</option>
+												</c:forEach>
+											</select>
+											<f:errors path="patientvo.email" cssClass="text-danger" />
+										</div> --%>
 										<div class="col-6 mb-3">
 											<label for="reportfile" class="form-label">Report
 												File<i class="text-danger">*</i>

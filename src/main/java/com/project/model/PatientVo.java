@@ -1,5 +1,6 @@
 package com.project.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -27,10 +28,6 @@ public class PatientVo {
 
 	@Column(name = "email")
 	private String email;
-
-	@ManyToOne
-	@JoinColumn(name = "doctor_id")
-	private DoctorVO doctorvo;
 
 	@ManyToOne
 	@JoinColumn(name = "state_id")
@@ -68,14 +65,6 @@ public class PatientVo {
 		this.email = email;
 	}
 
-
-	public DoctorVO getDoctorvo() {
-		return doctorvo;
-	}
-
-	public void setDoctorvo(DoctorVO doctorvo) {
-		this.doctorvo = doctorvo;
-	}
 
 	public StateVo getStatevo() {
 		return statevo;

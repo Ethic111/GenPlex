@@ -10,8 +10,18 @@ import com.project.model.ReportVo;
 
 public interface ReportService {
 	
-	void save(ReportVo reportVo,MultipartFile reportFile,HttpServletRequest request);
+	void save(ReportVo reportVo,MultipartFile reportFile,HttpServletRequest request,String email);
 	
 	List<ReportVo> search();
+	
+	List<ReportVo> searchByDoctor(String doctorun);
+	
+	List<ReportVo> searchByPatient(String patientUn);
+	
+	Response searchFilter(int cityState,int patientDoctor,int reportType);
+	
+	Response searchDoctorReportFilter(int cityState,int patientDoctor,int reportType);
+	
+	Response searchPatientReportFilter(int patientDoctor,int reportType);
 
 }

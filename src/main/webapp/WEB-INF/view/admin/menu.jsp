@@ -1,7 +1,8 @@
 <nav class="sidebar ">
 	<div class="sidebar-header">
 		<a href="#" class="sidebar-brand"> <!--  Gen<span>Plex</span> -->
-			<img src="https://i.ibb.co/Jxycj0s/Screenshot-2024-06-03-151706.png"
+			<img
+			src="<%=request.getContextPath()%>/adminresources/images/GenplexImage.png"
 			style="width: 168px; height: 36px; margin-left: -22px;" />
 		</a>
 		<div class="sidebar-toggler not-active">
@@ -33,6 +34,12 @@
 					class="link-title">Manage Doctor</span>
 			</a></li>
 
+			<li class="nav-item mb-3"><a href="patients"
+				class="nav-link menu-link"> <i
+					class="link-icon mdi mdi-account-multiple"></i> <span
+					class="link-title">Manage Patients</span>
+			</a></li>
+
 			<li class="nav-item mb-3"><a href="degrees" class="nav-link">
 					<i class="link-icon mdi mdi-certificate"></i> <span
 					class="link-title">Manage Degree</span>
@@ -43,7 +50,11 @@
 					class="link-title">Manage Report Types</span>
 			</a></li>
 
-
+			<li class="nav-item mb-3"><a href="reports"
+				class="nav-link menu-link"> <i
+					class="link-icon mdi mdi-file-document"></i> <span
+					class="link-title">Manage Reports</span>
+			</a></li>
 			<li class="nav-item mb-3"><a href="/logout" class="nav-link"><i
 					class="link-icon mdi mdi-logout"></i> <span class="link-title">Logout</span>
 			</a></li>

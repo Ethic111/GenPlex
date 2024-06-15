@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.model.LoginVO;
+import com.project.model.PatientVo;
 
 @Repository
 public class LoginDAOImpl implements LoginDAO {
@@ -25,11 +26,15 @@ public class LoginDAOImpl implements LoginDAO {
 	}
 
 	@Override
-	public List searchByUserName(String userName) {
+	public LoginVO searchByUserName(String userName) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from LoginVO where username= '" + userName + "'");
-		List ls = query.list();
-		return ls;
+		Query q = session.createQuery("from LoginVO where username= '" + userName + "'");
+		List<LoginVO> searchList = q.list();
+	
+		if (searchList.size() > 0) {
+			return searchList.get(0);
+		}
+		return null;
 	}
 
 }

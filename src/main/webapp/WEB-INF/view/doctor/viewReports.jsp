@@ -37,6 +37,8 @@
 
 <!-- inject:css -->
 <link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/select2.min.css" />
+<link rel="stylesheet"
 	href="<%=request.getContextPath()%>/adminresources/css/materialdesignicons.min.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/adminresources/css/flag-icon.min.css" />
@@ -87,6 +89,40 @@
 
 						</nav>
 					</div>
+					<div class="row m-2">
+						<div class="col-4 mr-5">
+							<select class="form-select" name="search_reportType"
+								id="reporttype_select">
+								<option value=0>All Report Types</option>
+								<c:forEach items="${reportTypeList}" var="i" varStatus="j">
+									<option value="${i.id}">${i.reportTypeName}</option>
+								</c:forEach>
+
+							</select>
+						</div>
+						<div class="col-4">
+							<select class="form-select" name="search_cityState"
+								id="citystate_select">
+								<option value=0>All City-State</option>
+								<c:forEach items="${cityList}" var="i" varStatus="j">
+									<option value="${i.id}">${i.cityName}</option>
+								</c:forEach>
+								<c:forEach items="${stateList}" var="x" varStatus="y">
+									<option value="${x.id}">${x.stateName}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<div class="col-4">
+							<select class="form-select" name="search_patient"
+								id="patient_select">
+								<option value=0>All Patient</option>
+								<c:forEach items="${patientDoctorList}" var="i" varStatus="j">
+									<option value="${i.patientvo.id}">${i.patientvo.email}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
 
 					<a href="addReport"><button class="btn btn-primary mt-2"
 							style="padding-right: 2rem; padding-left: 2rem;">Add</button></a>
@@ -99,7 +135,7 @@
 
 								<div class="table-responsive">
 									<table id="dataTableExample" class="table"
-										style="font-size: 1rem;">
+										style="font-size: 0.9rem;">
 										<thead>
 											<tr>
 												<th>#</th>
@@ -118,7 +154,7 @@
 													<td>${j.count}</td>
 													<td>${i.reporttypevo.reportTypeName}</td>
 													<td>${i.date}</td>
-													<td>${i.patientvo.email}</td>
+													<td>${i.patientdoctorvo.patientvo.email}</td>
 													<td>${i.statevo.stateName}</td>
 													<td>${i.cityvo.cityName}</td>
 													<td>${i.summary}</td>
@@ -162,6 +198,8 @@
 	<!-- core:js -->
 	<script src="<%=request.getContextPath()%>/adminresources/js/core.js"></script>
 	<!-- endinject -->
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/select2.min.js"></script>
 
 	<!-- Plugin js for this page -->
 	<script
@@ -175,11 +213,20 @@
 		src="<%=request.getContextPath()%>/adminresources/js/feather.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/adminresources/js/template.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/select2.js"></script>
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
 	<script
 		src="<%=request.getContextPath()%>/adminresources/js/data-table.js"></script>
+	<!-- End custom js for this page -->
+
+	<!-- Custom js for this page -->
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/custom/downloadFile.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/custom/doctorReportsFilter.js"></script>
 	<!-- End custom js for this page -->
 </body>
 </html>

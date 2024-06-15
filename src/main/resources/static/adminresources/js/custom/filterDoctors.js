@@ -550,20 +550,6 @@ function updateTableOnSelect(data, table, reviewStatus) {
 
 // File Download
 
-function addDownloadEventListeners() {
-    const downloadLinks = document.querySelectorAll('.download-link');
-
-    downloadLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const filePath = this.getAttribute('data-file-path');
-            console.log(filePath);
-            downloadFile(filePath);
-        });
-    });
-}
-
-
 function convertBackslashesToSlashes(path) {
     return path.replace(/\\/g, '/');
 }
@@ -581,8 +567,20 @@ function addDownloadEventListeners() {
     });
 }
 
+//function downloadFile(filePath) {
+//    const url = `/downloadFile?filePath=${encodeURIComponent(filePath)}`;
+//    const a = document.createElement('a');
+//    a.style.display = 'none';
+//    a.href = url;
+//    console.log(url);
+//    a.download = filePath.split('/').pop(); // Use the file name from the path
+//    document.body.appendChild(a);
+//    a.click();
+//    document.body.removeChild(a);
+//}
+
 function downloadFile(filePath) {
-    fetch(`/downloadFile?filePath=${encodeURIComponent(filePath)}`, {
+    fetch(filePath, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -598,7 +596,9 @@ function downloadFile(filePath) {
         throw new Error('File download failed');
     })
     .then(blob => {
+    	console.log(blob);
         const url = window.URL.createObjectURL(blob);
+        console.log(url);
         const a = document.createElement('a');
         a.style.display = 'none';
         a.href = url;
@@ -616,6 +616,10 @@ function downloadFile(filePath) {
 
 
 $(document).ready(function() {
+	
+	// Initialize Select2 for select elements
+	$('.form-select').select2();
+	
     $("#reviewstatus_select").on('change', (selectElement) => {
         const reviewStatus = selectElement.target.value;
         ajaxfunc(reviewStatus);

@@ -60,16 +60,19 @@
 							<div class="position-relative">
 								<figure
 									class="overflow-hidden mb-0 d-flex justify-content-center">
-									<img
+									<%-- <img
 										src="<%=request.getContextPath()%>/adminresources/images/doc1.avif"
-										class="rounded-top" alt="profile cover" />
+										class="rounded-top" alt="profile cover" /> --%>
+
+									 <img src="${doctorvo.profilePhotoPath}" class="rounded-top"
+										alt="profile cover" /> <!-- does not support this avif photo here -->
 								</figure>
 								<div
 									class="d-flex justify-content-between align-items-center position-absolute top-90 w-100 px-2 px-md-4 mt-n4">
 									<div>
 										<img class="wd-70 rounded-circle"
 											src="<%=request.getContextPath()%>/adminresources/images/face3.jpg"
-											alt="profile" /> <span class="h4 ms-3 text-dark">${doctorvo.doctorName }</span>
+											alt="profile" /> <span class="h4 ms-3 text-dark">${doctorvo.doctorName}</span>
 									</div>
 									<!-- <div class="d-none d-md-block">
 											<button class="btn btn-primary btn-icon-text">
@@ -217,8 +220,10 @@
 											</div>
 											<div>
 												<!-- placing a downoad button here  -->
-												<a href="#"><i class="mdi mdi-download"
-													style="color: blue; font-size: 1.3rem;"></i> </a>
+												<a class="download-link" href="#"
+													data-file-path="${doctorvo.addressProofPath}"><i
+													class="mdi mdi-download"
+													style="color: blue; font-size: 1.3rem;"></i></a>
 											</div>
 
 										</div>
@@ -246,8 +251,10 @@
 											</div>
 											<div>
 												<!-- placing a downoad button here  -->
-												<a href="#"><i class="mdi mdi-download"
-													style="color: blue; font-size: 1.3rem;"></i> </a>
+												<a class="download-link" href="#"
+													data-file-path="${doctorvo.governmentIdPath}"><i
+													class="mdi mdi-download"
+													style="color: blue; font-size: 1.3rem;"></i></a>
 											</div>
 
 										</div>
@@ -498,6 +505,8 @@
 
 
 	<!-- Custom js for this page -->
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/custom/profile.js"></script>
 	<!-- End custom js for this page -->
 </body>
 </html>

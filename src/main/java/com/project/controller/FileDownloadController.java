@@ -31,15 +31,16 @@ public class FileDownloadController {
 		try {
 			Path path = Paths.get(filePath);
 			File file = path.toFile();
-			System.out.println(file);
+			// System.out.println(file);
 			System.out.println(filePath);
-			
-/*
-			if (!file.exists()) {
-				throw new RuntimeException("File not found");
-			}*/
+
+//			if (!file.exists()) {
+//				throw new RuntimeException("File not found");
+//			}
 
 			Resource resource = new FileSystemResource(file);
+
+			System.out.println(resource);
 
 			HttpHeaders headers = new HttpHeaders();
 			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getName());

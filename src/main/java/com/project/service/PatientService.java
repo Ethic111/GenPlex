@@ -12,6 +12,14 @@ public interface PatientService {
 	
 	List<PatientVo> search();
 	
+	Response seachByFilterValue(int value);
+	
+	
+	
 	PatientVo searchById(int id);
+	
+	PatientVo searchByEmail(String pemail);
+	
+	
 
 }

@@ -8,7 +8,7 @@ public interface LoginDAO {
 
 	void save(LoginVO loginVO);
 
-	List searchByUserName(String userName);
+	LoginVO searchByUserName(String userName);
 
 
 }

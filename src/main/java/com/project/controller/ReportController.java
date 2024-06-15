@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.project.model.CityVo;
 import com.project.model.DegreeVo;
+import com.project.model.DoctorVO;
+import com.project.model.PatientDoctorMappingVO;
 import com.project.model.PatientVo;
 import com.project.model.ReportTypeVo;
 import com.project.model.ReportVo;
@@ -26,9 +29,11 @@ import com.project.model.StateVo;
 import com.project.service.CityService;
 import com.project.service.DegreeService;
 import com.project.service.DoctorService;
+import com.project.service.PatientDoctorMappingService;
 import com.project.service.PatientService;
 import com.project.service.ReportService;
 import com.project.service.ReportTypeService;
+import com.project.service.Response;
 import com.project.service.StateService;
 import com.project.utils.BaseMethod;
 
@@ -42,10 +47,11 @@ public class ReportController {
 	private DoctorService doctorService;
 	private ReportTypeService reportTypeService;
 	private BaseMethod basemethod;
+	private PatientDoctorMappingService patientDoctorMappingService;
 
 	public ReportController(ReportService reportService, StateService stateService, CityService cityService,
 			PatientService patientService, DoctorService doctorService, ReportTypeService reportTypeService,
-			BaseMethod basemethod) {
+			BaseMethod basemethod, PatientDoctorMappingService patientDoctorMappingService) {
 		this.reportService = reportService;
 		this.stateService = stateService;
 		this.cityService = cityService;
@@ -53,13 +59,38 @@ public class ReportController {
 		this.doctorService = doctorService;
 		this.reportTypeService = reportTypeService;
 		this.basemethod = basemethod;
+		this.patientDoctorMappingService = patientDoctorMappingService;
 	}
 
 	@GetMapping(value = "doctor/reports")
-	public ModelAndView reports() {
-		List<ReportVo> reportList = this.reportService.search();
+	public ModelAndView doctorreports() {
+		String doctorun = BaseMethod.getUsername();
+		List<ReportVo> reportList = this.reportService.searchByDoctor(doctorun);
+		List<CityVo> cityList = this.cityService.search();
+		List<StateVo> stateList = this.stateService.search();
+		List<PatientDoctorMappingVO> patientDoctorList = this.patientDoctorMappingService.searchByDoctor(doctorun);
+		List<ReportTypeVo> reportTypeList = this.reportTypeService.search();
+
 		System.out.println(reportList);
-		return new ModelAndView("doctor/viewReports","reportList",reportList);
+		return new ModelAndView("doctor/viewReports", "reportList", reportList)
+				.addObject("patientDoctorList", patientDoctorList).addObject("stateList", stateList)
+				.addObject("cityList", cityList).addObject("reportTypeList", reportTypeList);
+	}
+
+	@GetMapping(value = "admin/reports")
+	public ModelAndView adminreports() {
+
+		List<ReportVo> reportList = this.reportService.search();
+		List<CityVo> cityList = this.cityService.search();
+		List<StateVo> stateList = this.stateService.search();
+		List<DoctorVO> doctorList = this.doctorService.searchAcceptedDoctors();
+		List<PatientVo> patientList = this.patientService.search();
+		List<ReportTypeVo> reportTypeList = this.reportTypeService.search();
+
+		System.out.println(reportList);
+		return new ModelAndView("admin/viewReports", "reportList", reportList).addObject("patientList", patientList)
+				.addObject("doctorList", doctorList).addObject("stateList", stateList).addObject("cityList", cityList)
+				.addObject("reportTypeList", reportTypeList);
 	}
 
 	@GetMapping(value = "doctor/addReport")
@@ -67,19 +98,43 @@ public class ReportController {
 
 		List<StateVo> stateList = this.stateService.search();
 		List<CityVo> cityList = this.cityService.search();
-		List<PatientVo> patientList = this.patientService.search();
+
+		String doctorun = BaseMethod.getUsername();
+		List<PatientDoctorMappingVO> patientDoctorMappingList = this.patientDoctorMappingService
+				.searchByDoctor(doctorun);
+
 		List<ReportTypeVo> reportTypeList = this.reportTypeService.search();
 
 		return new ModelAndView("doctor/addReport", "ReportVo", new ReportVo()).addObject("stateList", stateList)
-				.addObject("cityList", cityList).addObject("patientList", patientList)
+				.addObject("cityList", cityList).addObject("patientDoctorMappingList", patientDoctorMappingList)
 				.addObject("reportTypeList", reportTypeList);
+	}
+
+	@GetMapping(value = "patient/reports")
+	public ModelAndView patientReports() {
+
+		List<ReportVo> reportList = this.reportService.searchByPatient(BaseMethod.getUsername());
+		List<ReportTypeVo> reportTypeList = this.reportTypeService.search();
+		List<DoctorVO> doctorList = this.doctorService.searchAcceptedDoctors();
+
+		return new ModelAndView("patient/viewReports", "reportList", reportList)
+				.addObject("reportTypeList", reportTypeList).addObject("doctorList", doctorList);
+
 	}
 
 	@PostMapping(value = "doctor/saveReport")
 	public ModelAndView saveReport(@Valid @ModelAttribute ReportVo reportVo, BindingResult result,
-			@RequestParam("reportFile") MultipartFile reportFile, HttpServletRequest request) {
+			@RequestParam("reportFile") MultipartFile reportFile, HttpServletRequest request,
+			@RequestParam String patientEmail) {
 
-		// save the patient for new username
+		// String doctorUsername = BaseMethod.getUsername();
+		// DoctorVO doctorvo = this.doctorService.searchByUn(doctorUsername);
+
+		// PatientDoctorMappingVO pdVo =
+		// this.patientDoctorMappingService.searchByEmail(patientEmail,doctorvo);
+
+		System.out.println("Insert Report-" + patientEmail);
+
 		ReportVo reportvo = new ReportVo();
 		reportvo.setId(reportVo.getId());
 		reportvo.setDate(reportVo.getDate());
@@ -87,26 +142,23 @@ public class ReportController {
 		reportvo.setCityvo(this.cityService.seachById(reportVo.getCityvo().getId()));
 		reportvo.setStatevo(this.stateService.seachById(reportVo.getStatevo().getId()));
 		reportvo.setReporttypevo(this.reportTypeService.searchById(reportVo.getReporttypevo().getId()));
-		reportvo.setPatientvo(this.patientService.searchById(reportVo.getPatientvo().getId()));
-		reportvo.setDoctorvo(this.doctorService.searchByUn(BaseMethod.getUsername()));
-		
-//		System.out.println(reportVo.getSummary());
-//		System.out.println(reportVo.getCityvo().getCityName());
-//		System.out.println(reportVo.getCityvo().getId());
+		// reportvo.setPatientdoctorvo(pdVo);
 
 		if (result.hasErrors()) {
 			System.out.println(result.getObjectName());
 			System.out.println(result.getAllErrors());
 			List<StateVo> stateList = this.stateService.search();
 			List<CityVo> cityList = this.cityService.search();
-			List<PatientVo> patientList = this.patientService.search();
+			String doctorun = BaseMethod.getUsername();
+			List<PatientDoctorMappingVO> patientDoctorMappingList = this.patientDoctorMappingService
+					.searchByDoctor(doctorun);
 			List<ReportTypeVo> reportTypeList = this.reportTypeService.search();
 			return new ModelAndView("doctor/addReport", "ReportVo", reportVo).addObject("stateList", stateList)
-					.addObject("cityList", cityList).addObject("patientList", patientList)
+					.addObject("cityList", cityList).addObject("patientDoctorMappingList", patientDoctorMappingList)
 					.addObject("reportTypeList", reportTypeList);
 		}
 
-		this.reportService.save(reportvo, reportFile, request);
+		this.reportService.save(reportvo, reportFile, request, patientEmail);
 		return new ModelAndView("redirect:reports");
 	}
 
@@ -117,5 +169,34 @@ public class ReportController {
 		List<CityVo> cityList = this.cityService.getCitiesByStateID(stateId);
 		return ResponseEntity.ok(cityList);
 
+	}
+
+	@GetMapping(value = "filterReports", produces = "application/json")
+	public ResponseEntity<Response> filterReports(@RequestParam(value = "cityState") int cityState,
+			@RequestParam(value = "patientDoctor") int patientDoctor,
+			@RequestParam(value = "reportType") int reportType) {
+
+		Response response = this.reportService.searchFilter(cityState, patientDoctor, reportType);
+		response.setStatus(true);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "doctorFilterReports", produces = "application/json")
+	public ResponseEntity<Response> doctorFilterReports(@RequestParam(value = "cityState") int cityState,
+			@RequestParam(value = "patientDoctor") int patientDoctor,
+			@RequestParam(value = "reportType") int reportType) {
+
+		Response response = this.reportService.searchDoctorReportFilter(cityState, patientDoctor, reportType);
+		response.setStatus(true);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "patientFilterReports", produces = "application/json")
+	public ResponseEntity<Response> patientFilterReports(@RequestParam(value = "patientDoctor") int patientDoctor,
+			@RequestParam(value = "reportType") int reportType) {
+
+		Response response = this.reportService.searchPatientReportFilter(patientDoctor, reportType);
+		response.setStatus(true);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

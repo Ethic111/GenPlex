@@ -1,5 +1,4 @@
 
-
 // File Download
 
 function convertBackslashesToSlashes(path) {
@@ -20,7 +19,7 @@ function addDownloadEventListeners() {
 }
 
 function downloadFile(filePath) {
-    fetch(`/downloadFile?filePath=${encodeURIComponent(filePath)}`, {
+    fetch(filePath, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -37,13 +36,14 @@ function downloadFile(filePath) {
     })
     .then(blob => {
         const url = window.URL.createObjectURL(blob);
+        console.log(url);
         const a = document.createElement('a');
         a.style.display = 'none';
         a.href = url;
         a.download = filePath.split('/').pop(); // Use the file name from the
 												// path
         document.body.appendChild(a);
-        a.click();
+        a.click();      
         window.URL.revokeObjectURL(url);
     })
     .catch(error => {

@@ -34,6 +34,14 @@ public class DoctorDAOImp implements DoctorDAO {
 		List<DoctorVO> searchList = q.list();
 		return searchList;
 	}
+	
+	public List<DoctorVO> searchAcceptedDoctors() {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from DoctorVO where status = true and reviewStatus =:reviewStatus");
+		q.setParameter("reviewStatus", DoctorReviewStatus.ACCEPTED);
+		List<DoctorVO> searchList = q.list();
+		return searchList;
+	}
 
 	public DoctorVO seachById(int id) {
 

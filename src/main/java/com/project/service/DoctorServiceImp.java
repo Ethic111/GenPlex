@@ -52,6 +52,11 @@ public class DoctorServiceImp implements DoctorService {
 		List<DoctorVO> reqDoctorList = this.doctorDAO.search();
 		return reqDoctorList;
 	}
+	
+	public List<DoctorVO> searchAcceptedDoctors() {
+		List<DoctorVO> reqDoctorList = this.doctorDAO.searchAcceptedDoctors();
+		return reqDoctorList;
+	}
 
 	public void doctorApproved(int id, DoctorVO doctorVO) {
 
@@ -72,7 +77,7 @@ public class DoctorServiceImp implements DoctorService {
 			emailTemplate = FileUtils.readFileAsString(approvalEmailPath);
 		} catch (IOException e) {
 			e.printStackTrace();
-			return; // or handle the error appropriately
+			return; 
 		}
 
 		String replaced_message = emailTemplate.replace("[doctor name]", doctorVO.getDoctorName())

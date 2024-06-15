@@ -38,6 +38,8 @@
 <!-- Plugin css for this page -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/adminresources/css/sweetalert2.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/adminresources/css/select2.min.css" />
 <!-- End plugin css for this page -->
 
 <!-- inject:css -->
@@ -271,7 +273,8 @@
 	<!-- End plugin js for this page -->
 
 	<!-- Custom js for this page -->
-	<!-- 	<script src="<%=request.getContextPath()%>/adminresources/js/sweet-alert.js"></script> -->
+	<script
+		src="<%=request.getContextPath()%>/adminresources/js/select2.js"></script>
 	<!-- End custom js for this page -->
 
 	<!-- Plugin js for this page -->

@@ -1,3 +1,5 @@
+com\project\model\PatientDoctorMappingVO.class
+com\project\dao\PatientDoctorMappingDao.class
 com\project\dao\PatientDao.class
 com\project\controller\DoctorProfileController.class
 com\project\model\CityVo.class
@@ -8,6 +10,7 @@ com\project\model\DegreeVo.class
 com\project\model\PatientVo.class
 com\project\service\DoctorProfileServiceImp.class
 com\project\service\DoctorProfileService.class
+com\project\service\PatientDoctorMappingService.class
 com\project\service\ReportService.class
 com\project\controller\ReportController.class
 com\project\controller\ReportTypeController.class
@@ -31,6 +34,7 @@ com\project\Application.class
 com\project\controller\FileDownloadController.class
 com\project\service\LoginServiceImpl.class
 com\project\configuration\CustomizeAuthenticationSuccessHandler.class
+com\project\dao\PatientDoctorMappingDaoImp.class
 com\project\controller\CityController.class
 com\project\service\ReportServiceImp.class
 com\project\service\StateService.class
@@ -44,6 +48,7 @@ com\project\dao\DoctorDAO.class
 com\project\dao\StateDaoImp.class
 com\project\service\LoginService.class
 com\project\dao\LoginDAOImpl.class
+com\project\service\PatientDoctorMappingServiceImp.class
 com\project\model\ReportTypeVo.class
 com\project\controller\DegreeController.class
 com\project\utils\BaseMethod$1.class

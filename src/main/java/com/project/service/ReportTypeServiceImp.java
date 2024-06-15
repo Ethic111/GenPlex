@@ -15,6 +15,7 @@ public class ReportTypeServiceImp implements ReportTypeService{
 	private ReportTypeDao reportTypeDao;
 
 	public ReportTypeServiceImp(ReportTypeDao reportTypeDao) {
+		
 		this.reportTypeDao = reportTypeDao;
 	}
 

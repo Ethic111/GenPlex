@@ -23,7 +23,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public List searchByUserName(String userName) {
+	public LoginVO searchByUserName(String userName) {
 		return this.loginDAO.searchByUserName(userName);
 	}
 
