@@ -1,6 +1,17 @@
 $(document).ready(function() {
     // Initialize Select2 for select elements
     $('.form-select').select2();
+    
+ // Event listener for the view link
+    $(document).on('click', '.view-link', function() {
+        const reportType = $(this).data('report-type');
+        const reportPath = $(this).data('report-path');
+
+        // Set modal content
+        $('#reportModalLabel').text(reportType);
+        $('#reportModalImage').attr('src', reportPath);
+        $('#reportModalDownload').attr('href', reportPath);
+    });
 
     let cityStateValue = 0;
     let patientDoctor = 0;
@@ -50,12 +61,11 @@ function updateTableOnSelect(data, table) {
             <a class="download-link" href="#" data-file-path="${item.reportPath}" style="padding-right: 12px;">
                 <i class="mdi mdi-download" style="color: blue; font-size: 1.4rem;"></i>
             </a>
-            <a href="deleteReportType?id=${item.id}">
-                <i class="mdi mdi-delete-sweep" style="color: red; font-size: 1.5rem;"></i>
-            </a>
-            <a href="editReportType?id=${item.id}" style="margin-left: 1rem;">
-                <i class="mdi mdi-table-edit" style="color: blue; font-size: 1.5rem;"></i>
-            </a>`;
+            <a class="view-link" href="#" data-bs-toggle="modal" data-bs-target="#reportModal"
+				data-report-type="${item.reporttypevo.reportTypeName}" data-report-path="${item.reportPath}"
+				style="padding-right: 12px; cursor: pointer;"> <i class="mdi mdi-eye"
+				style="color: blue; font-size: 1.4rem;"></i>
+			</a>`;
         
         const row = [
             index + 1,
@@ -98,3 +108,60 @@ function updateTableOnSelect(data, table) {
         }
     });
 }
+
+// File Download
+
+function convertBackslashesToSlashes(path) {
+    return path.replace(/\\/g, '/');
+}
+
+function addDownloadEventListeners() {
+    const downloadLinks = document.querySelectorAll('.download-link');
+
+    downloadLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            let filePath = this.getAttribute('data-file-path');
+            filePath = convertBackslashesToSlashes(filePath);
+            downloadFile(filePath);
+        });
+    });
+}
+
+function downloadFile(filePath) {
+    fetch(filePath, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.blob();
+        }
+        if (response.status === 404) {
+            throw new Error('File not found');
+        }
+        throw new Error('File download failed');
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = filePath.split('/').pop(); // Use the file name from the
+												// path
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+        console.error('There was an error downloading the file:', error);
+        alert('Error downloading file: ' + error.message);
+    });
+}
+
+$(document).ready(function() {
+    addDownloadEventListeners();
+});
+

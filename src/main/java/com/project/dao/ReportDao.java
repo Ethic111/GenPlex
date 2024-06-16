@@ -2,6 +2,7 @@ package com.project.dao;
 
 import java.util.List;
 
+import com.project.model.PatientDoctorMappingVO;
 import com.project.model.ReportVo;
 
 public interface ReportDao {
@@ -9,6 +10,10 @@ public interface ReportDao {
 	void save(ReportVo reportVo);
 
 	List<ReportVo> search();
+	
+	ReportVo searchByReportID(int rid);
+	
+	List<ReportVo> searchByPatientDoctorMap(PatientDoctorMappingVO pdvo);
 
 	List<ReportVo> searchByDoctor(String doctorun);
 

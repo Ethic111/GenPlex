@@ -8,8 +8,8 @@
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="profileDropdown"
 				role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <img class="wd-30 ht-30 rounded-circle"
-					src="<%=request.getContextPath()%>/adminresources/images/face1.jpg" alt="profile" />
+				aria-expanded="false"> <img class="wd-50 ht-50 rounded-circle"
+					src="<%=request.getContextPath()%>/adminresources/images/adminProfileIcon.png" alt="profile" />
 			</a>
 				<div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
 					<ul class="list-unstyled p-1">

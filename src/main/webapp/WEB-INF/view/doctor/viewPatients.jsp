@@ -115,7 +115,7 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Name</th>
+
 												<th>Email</th>
 												<th>State</th>
 												<th>City</th>
@@ -126,14 +126,7 @@
 											<c:forEach items="${patientDoctorList}" var="i" varStatus="j">
 												<tr>
 													<td>${j.count}</td>
-													<td><c:choose>
-															<c:when test="${i.patientvo.patientName != null}">
-                                                                ${i.patientvo.patientName}
-                                                            </c:when>
-															<c:otherwise>
-                                                                -
-                                                            </c:otherwise>
-														</c:choose></td>
+
 													<td>${i.patientvo.email}</td>
 													<td>${i.patientvo.statevo.stateName}</td>
 													<td>${i.patientvo.cityvo.cityName}</td>
@@ -147,12 +140,6 @@
 												</tr>
 											</c:forEach>
 
-											<!-- <td>Hii</td>
-											<td>Hii</td>
-											<td><a href="delete"><i class="mdi mdi-delete-sweep"
-													style="color: red; font-size: 1.5rem;"></i></a> <a href="edit"
-												style="margin-left: 1rem;"><i class="mdi mdi-table-edit"
-													style="color: blue; font-size: 1.5rem;"></i> </a></td> -->
 										</tbody>
 									</table>
 								</div>

@@ -15,8 +15,12 @@ public interface PatientDoctorMappingService {
 	
 	List<PatientDoctorMappingVO> searchByDoctor(String doctorun);
 	
+	List<PatientDoctorMappingVO> search();
+	
 	List<String> getPatientsEmails();
 	
 	Response seachDoctorFilterValue(int value);
+	
+	void delete(PatientDoctorMappingVO pdvo);
 
 }

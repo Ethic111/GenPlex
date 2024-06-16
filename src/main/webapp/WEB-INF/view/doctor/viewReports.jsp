@@ -157,30 +157,59 @@
 													<td>${i.patientdoctorvo.patientvo.email}</td>
 													<td>${i.statevo.stateName}</td>
 													<td>${i.cityvo.cityName}</td>
-													<td>${i.summary}</td>
+													<td class="text-wrap">${i.summary}</td>
 													<td><a class="download-link" href="#"
 														data-file-path="${i.reportPath}"
 														style="padding-right: 12px;"><i
 															class="mdi mdi-download"
 															style="color: blue; font-size: 1.4rem;"></i></a><a
-														href="deleteReportType?id=${i.id}"><i
+														class="view-link" href="#" data-bs-toggle="modal"
+														data-bs-target="#reportModal"
+														data-report-type="${i.reporttypevo.reportTypeName}"
+														data-report-path="${i.reportPath}"
+														style="padding-right: 12px; cursor: pointer;"> <i
+															class="mdi mdi-eye"
+															style="color: blue; font-size: 1.4rem;"></i>
+													</a><a href="deleteReport?rid=${i.id}"><i
 															class="mdi mdi-delete-sweep"
-															style="color: red; font-size: 1.5rem;"></i></a> <a
-														href="editReportType?id=${i.id}"
+															style="color: red; font-size: 1.5rem;"></i></a>
+															<%--  <a
+														href="editReport?rid=${i.id}"
 														style="margin-left: 1rem;"><i
 															class="mdi mdi-table-edit"
-															style="color: blue; font-size: 1.5rem;"></i> </a></td>
+															style="color: blue; font-size: 1.5rem;"></i> </a> --%>
+															</td>
 												</tr>
 											</c:forEach>
 
-											<!-- <td>Hii</td>
-											<td>Hii</td>
-											<td><a href="delete"><i class="mdi mdi-delete-sweep"
-													style="color: red; font-size: 1.5rem;"></i></a> <a href="edit"
-												style="margin-left: 1rem;"><i class="mdi mdi-table-edit"
-													style="color: blue; font-size: 1.5rem;"></i> </a></td> -->
 										</tbody>
 									</table>
+
+									<!-- Modal -->
+									<div class="modal fade" id="reportModal" tabindex="-1"
+										aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title text-primary" id="reportModalLabel"></h4>
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													<img id="reportModalImage" src="" alt="Report Image"
+														style="height: 28rem; width: 29rem;" />
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-bs-dismiss="modal">Close</button>
+													<a id="reportModalDownload" class="btn btn-primary"
+														href="#" download>Download</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- End Modal -->
+
 								</div>
 							</div>
 						</div>
@@ -223,8 +252,8 @@
 	<!-- End custom js for this page -->
 
 	<!-- Custom js for this page -->
-	<script
-		src="<%=request.getContextPath()%>/adminresources/js/custom/downloadFile.js"></script>
+<%-- 	<script
+		src="<%=request.getContextPath()%>/adminresources/js/custom/downloadFile.js"></script> --%>
 	<script
 		src="<%=request.getContextPath()%>/adminresources/js/custom/doctorReportsFilter.js"></script>
 	<!-- End custom js for this page -->

@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import com.project.model.PatientDoctorMappingVO;
+import com.project.model.ReportTypeVo;
 import com.project.model.ReportVo;
 
 @Repository
@@ -26,6 +28,26 @@ public class ReportDaoImp implements ReportDao {
 	public List<ReportVo> search() {
 		Session session = sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from ReportVo where status = true");
+		List<ReportVo> searchList = q.list();
+
+		return searchList;
+	}
+	
+	public ReportVo searchByReportID(int rid){
+		Session session = sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from ReportVo where status = true and id =" + rid);
+		List<ReportVo> searchList = q.list();
+		ReportVo reportvo = new ReportVo();
+		if (searchList.size() > 0) {
+			reportvo  = searchList.get(0);
+		}
+		return reportvo;
+	}
+
+	public List<ReportVo> searchByPatientDoctorMap(PatientDoctorMappingVO pdvo) {
+		Session session = sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from ReportVo where status = true and patientdoctorvo.id =:pdmid");
+		q.setParameter("pdmid",pdvo.getId());
 		List<ReportVo> searchList = q.list();
 
 		return searchList;
@@ -223,13 +245,13 @@ public class ReportDaoImp implements ReportDao {
 
 	public List<ReportVo> searchPatientFilterReports(int patientDoctor, int patientId) {
 		Session session = sessionFactory.getCurrentSession();
-		Query q = session.createQuery(
-				"from ReportVo where status = true and patientdoctorvo.patientvo.id =:patientid and patientdoctorvo.doctorvo.id =:id");
-		q.setParameter("patientid", patientId);
-		q.setParameter("id", patientDoctor);
-		List<ReportVo> searchList = q.list();
+		System.out.println(patientDoctor);
+		String hql = "from ReportVo r where r.status = true and r.patientdoctorvo.patientvo.id = :patientid and r.patientdoctorvo.doctorvo.id = :doctorid";
+		Query query = session.createQuery(hql);
+		query.setParameter("patientid", patientId);
+		query.setParameter("doctorid", patientDoctor);
 
-		return searchList;
+		return query.list();
 	}
 
 	public List<ReportVo> searchPatientFilterReportType(int reportType, int patientId) {

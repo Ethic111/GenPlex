@@ -10,6 +10,8 @@ public interface PatientDoctorMappingDao {
 	
 	void save(PatientDoctorMappingVO pdvo);
 	
+	List<PatientDoctorMappingVO> search();
+	
 	PatientDoctorMappingVO searchByEmail(String email,DoctorVO doctorvo); 
 	
 	PatientDoctorMappingVO searchById(int pid,String doctorun); 

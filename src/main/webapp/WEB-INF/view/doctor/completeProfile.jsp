@@ -91,12 +91,7 @@
 									action="addProfile" enctype="multipart/form-data"
 									modelAttribute="doctorvo">
 									<div>
-										<div class="mb-3">
-											<label for="profilepicture" class="form-label">Profile
-												Picture<i class="text-danger">*</i>
-											</label> <input type="file" name="profilePicture"
-												class="form-control">
-										</div>
+										
 										<div class="mb-3">
 											<label for="age" class="form-label">Age<i
 												class="text-danger">*</i>

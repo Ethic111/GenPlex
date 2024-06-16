@@ -45,7 +45,6 @@ function updateTableOnSelect(data, table) {
         
         const row = [
             index + 1,
-            item.patientvo.patientName ? item.patientvo.patientName : '-',
             item.patientvo.email,
             item.patientvo.statevo.stateName,
             item.patientvo.cityvo.cityName,
@@ -57,7 +56,6 @@ function updateTableOnSelect(data, table) {
 
     const columnHeaders = [
         '#',
-        'NAME',
         'EMAIL',
         'STATE',
         'CITY',

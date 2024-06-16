@@ -83,9 +83,7 @@
 											yet?</h6>
 										<div class="">
 											<a href="registerDoctor" class="mt-3 text-muted">Doctor
-												Registration</a> <span class="mt-3 text-muted">||</span> <a
-												href="registerPatient" class="mt-3 text-muted">Patient
-												Registration</a>
+												Registration</a> <span class="mt-3 text-muted">
 										</div>
 									</div>
 								</div>

@@ -23,8 +23,8 @@ public class PatientVo {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "patientName")
-	private String patientName;
+//	@Column(name = "patientName")
+//	private String patientName;
 
 	@Column(name = "email")
 	private String email;
@@ -41,6 +41,7 @@ public class PatientVo {
 
 	private boolean profileStatus;
 
+
 	public int getId() {
 		return id;
 	}
@@ -49,13 +50,13 @@ public class PatientVo {
 		this.id = id;
 	}
 
-	public String getPatientName() {
-		return patientName;
-	}
-
-	public void setPatientName(String patientName) {
-		this.patientName = patientName;
-	}
+//	public String getPatientName() {
+//		return patientName;
+//	}
+//
+//	public void setPatientName(String patientName) {
+//		this.patientName = patientName;
+//	}
 
 	public String getEmail() {
 		return email;

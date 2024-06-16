@@ -60,8 +60,6 @@ public class DoctorVO {
 	@Column(name = "government_id_path")
 	private String governmentIdPath;
 
-	@Column(name = "profile_photo_path")
-	private String profilePhotoPath;
 
 	private boolean status;
 
@@ -179,12 +177,5 @@ public class DoctorVO {
 		this.governmentIdPath = governmentIdPath;
 	}
 
-	public String getProfilePhotoPath() {
-		return profilePhotoPath;
-	}
-
-	public void setProfilePhotoPath(String profilePhotoPath) {
-		this.profilePhotoPath = profilePhotoPath;
-	}
 
 }

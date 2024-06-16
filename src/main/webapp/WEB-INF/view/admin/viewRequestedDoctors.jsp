@@ -178,20 +178,7 @@
 
 															</c:otherwise>
 														</c:choose></td>
-													<%-- <c:if test="${i.reviewStatus == 'ACCEPTED'}">
-														<td><a
-															href="downloadFile?filePath=${i.certificatePath}"><i
-																class="mdi mdi-download"
-																style="color: blue; font-size: 1.5rem;"></i></a></td>
-														<td><a
-															href="downloadFile?filePath=${i.addressProofPath}"><i
-																class="mdi mdi-download"
-																style="color: blue; font-size: 1.5rem;"></i></a></td>
-														<td><a
-															href="downloadFile?filePath=${i.governmentIdPath}"><i
-																class="mdi mdi-download"
-																style="color: blue; font-size: 1.5rem;"></i></a></td>
-													</c:if> --%>
+													
 												</tr>
 											</c:forEach>
 										</tbody>

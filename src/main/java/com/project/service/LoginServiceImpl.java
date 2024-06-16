@@ -26,5 +26,10 @@ public class LoginServiceImpl implements LoginService {
 	public LoginVO searchByUserName(String userName) {
 		return this.loginDAO.searchByUserName(userName);
 	}
+	
+	public void delete(LoginVO loginvo){
+		loginvo.setStatus(false);
+		this.loginDAO.save(loginvo);
+	}
 
 }

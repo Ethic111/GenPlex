@@ -119,9 +119,34 @@ public class ReportServiceImp implements ReportService {
 
 	}
 
+	public void delete(PatientDoctorMappingVO pdvo) {
+		try {
+			List<ReportVo> reportlist = this.reportDao.searchByPatientDoctorMap(pdvo);
+			for (ReportVo reportvo : reportlist) {
+				reportvo.setStatus(false);
+				this.reportDao.save(reportvo);
+			}
+		} catch (Exception e) {
+			// Log the exception
+			System.err.println("Error occurred while deleting reports: " + e.getMessage());
+			e.printStackTrace();
+			throw new RuntimeException("Failed to delete reports for the given PatientDoctorMappingVO", e);
+		}
+	}
+	
+	public void deleteReport(ReportVo reportVo){
+		reportVo.setStatus(false);
+		this.reportDao.save(reportVo);
+	}
+
 	public List<ReportVo> search() {
 		List<ReportVo> searchList = this.reportDao.search();
 		return searchList;
+	}
+	
+	public ReportVo searchByReportID(int rid){
+		ReportVo reportvo = this.reportDao.searchByReportID(rid);
+		return reportvo;
 	}
 
 	public List<ReportVo> searchByDoctor(String doctorun) {
@@ -140,7 +165,7 @@ public class ReportServiceImp implements ReportService {
 		if (cityState == 0 && patientDoctor == 0 && reportType == 0) {
 
 			response.setBody(this.reportDao.search());
-			
+
 		} else if (cityState != 0 && patientDoctor == 0 && reportType == 0) {
 
 			response.setBody(this.reportDao.searchFilterCityState(cityState));
@@ -173,73 +198,73 @@ public class ReportServiceImp implements ReportService {
 
 		return response;
 	}
-	
+
 	public Response searchDoctorReportFilter(int cityState, int patientDoctor, int reportType) {
 		Response response = new Response();
-		
+
 		DoctorVO doctorvo = this.doctorService.searchByUn(BaseMethod.getUsername());
 		int doctorId = doctorvo.getId();
-		
+
 		if (cityState == 0 && patientDoctor == 0 && reportType == 0) {
 
 			response.setBody(searchByDoctor(BaseMethod.getUsername()));
-			
+
 		} else if (cityState != 0 && patientDoctor == 0 && reportType == 0) {
-			
-			response.setBody(this.reportDao.searchDoctorFilterCityState(cityState,doctorId));
-			
+
+			response.setBody(this.reportDao.searchDoctorFilterCityState(cityState, doctorId));
+
 		} else if (cityState == 0 && patientDoctor != 0 && reportType == 0) {
-			
-			response.setBody(this.reportDao.searchDoctorFilterPatientDoctor(patientDoctor,doctorId));
-			
+
+			response.setBody(this.reportDao.searchDoctorFilterPatientDoctor(patientDoctor, doctorId));
+
 		} else if (cityState == 0 && patientDoctor == 0 && reportType != 0) {
-			
-			response.setBody(this.reportDao.searchDoctorFilterReportType(reportType,doctorId));
-			
+
+			response.setBody(this.reportDao.searchDoctorFilterReportType(reportType, doctorId));
+
 		} else if (cityState != 0 && patientDoctor != 0 && reportType == 0) {
-			
-			response.setBody(this.reportDao.searchDoctorFilterCSPD(cityState, patientDoctor,doctorId));
-			
+
+			response.setBody(this.reportDao.searchDoctorFilterCSPD(cityState, patientDoctor, doctorId));
+
 		} else if (cityState != 0 && patientDoctor == 0 && reportType != 0) {
-			
-			response.setBody(this.reportDao.searchDoctorFilterCSRT(cityState, reportType,doctorId));
-			
+
+			response.setBody(this.reportDao.searchDoctorFilterCSRT(cityState, reportType, doctorId));
+
 		} else if (cityState == 0 && patientDoctor != 0 && reportType != 0) {
-			
-			response.setBody(this.reportDao.searchDoctorFilterPDRT(patientDoctor, reportType,doctorId));
-			
+
+			response.setBody(this.reportDao.searchDoctorFilterPDRT(patientDoctor, reportType, doctorId));
+
 		} else if (cityState != 0 && patientDoctor != 0 && reportType != 0) {
-			
-			response.setBody(this.reportDao.searchDoctorFilterAll(cityState, patientDoctor, reportType,doctorId));
-			
+
+			response.setBody(this.reportDao.searchDoctorFilterAll(cityState, patientDoctor, reportType, doctorId));
+
 		}
-		
+
 		return response;
 	}
-	
-	
+
 	public Response searchPatientReportFilter(int patientDoctor, int reportType) {
 		Response response = new Response();
-		
+
 		PatientVo patientvo = this.patientService.searchByEmail(BaseMethod.getUsername());
 		int patientId = patientvo.getId();
-		
+		System.out.println("PatientID = " + patientId);
+
 		if (patientDoctor == 0 && reportType == 0) {
-			
+
 			response.setBody(searchByPatient(BaseMethod.getUsername()));
-			
-		}  else if (patientDoctor != 0 && reportType == 0) {
-			
-			response.setBody(this.reportDao.searchPatientFilterReports(patientDoctor,patientId));
-			
+
+		} else if (patientDoctor != 0 && reportType == 0) {
+
+			response.setBody(this.reportDao.searchPatientFilterReports(patientDoctor, patientId));
+
 		} else if (patientDoctor == 0 && reportType != 0) {
-			
-			response.setBody(this.reportDao.searchPatientFilterReportType(reportType,patientId));
-			
-		}  else if (patientDoctor != 0 && reportType != 0) {
-			
-			response.setBody(this.reportDao.searchPatientFilterPDRT(patientDoctor, reportType,patientId));
-			
+
+			response.setBody(this.reportDao.searchPatientFilterReportType(reportType, patientId));
+
+		} else if (patientDoctor != 0 && reportType != 0) {
+
+			response.setBody(this.reportDao.searchPatientFilterPDRT(patientDoctor, reportType, patientId));
+
 		}
 		return response;
 	}

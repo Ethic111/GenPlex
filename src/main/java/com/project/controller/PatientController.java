@@ -82,10 +82,10 @@ public class PatientController {
 				.addObject("stateList", stateList);
 	}
 
-	@GetMapping("doctor/addpatient")
+/*	@GetMapping("doctor/addpatient")
 	public ModelAndView addpatient() {
 		return new ModelAndView("doctor/addpatient");
-	}
+	}*/
 
 	@PostMapping("doctor/insertPatient")
 	public ResponseEntity<PatientVo> insertPatient(@RequestParam String patientEmail, @RequestParam int stateId,
@@ -117,11 +117,16 @@ public class PatientController {
 		// }
 	}
 
-	@GetMapping(value = "deletePatient")
+	@GetMapping(value = "doctor/deletePatient")
 	public ModelAndView deletePatient(@RequestParam int pid) {
 		PatientVo pvo = this.patientService.searchById(pid);
 		PatientDoctorMappingVO pdvo = this.patientDoctorMappingService.searchById(pid, BaseMethod.getUsername());
 		LoginVO loginVo = this.loginService.searchByUserName(pvo.getEmail());
+		
+		this.loginService.delete(loginVo);
+		this.patientDoctorMappingService.delete(pdvo);
+		this.reportService.delete(pdvo);
+		
 		return new ModelAndView("redirect:patients");
 	}
 

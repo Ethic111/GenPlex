@@ -9,6 +9,6 @@ import com.project.model.DoctorVO;
 public interface DoctorProfileService {
 	
 	DoctorVO saveProfile(MultipartFile govermentId, MultipartFile addressProof, MultipartFile doctorCertificate,
-			MultipartFile profilePicture, HttpServletRequest request,DoctorVO doctorVo);
+			 HttpServletRequest request,DoctorVO doctorVo);
 
 }

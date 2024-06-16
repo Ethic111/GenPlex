@@ -9,4 +9,6 @@ public interface LoginService {
 	void save(LoginVO loginVO);
 
 	LoginVO searchByUserName(String userName);
+
+	void delete(LoginVO loginvo);
 }

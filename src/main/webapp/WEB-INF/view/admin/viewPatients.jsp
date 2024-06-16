@@ -117,7 +117,7 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Name</th>
+
 												<th>Email</th>
 												<th>State</th>
 												<th>City</th>
@@ -128,14 +128,7 @@
 											<c:forEach items="${patientList}" var="i" varStatus="j">
 												<tr>
 													<td>${j.count}</td>
-													<td><c:choose>
-															<c:when test="${i.patientName != null}">
-                                                                ${i.patientName}
-                                                            </c:when>
-															<c:otherwise>
-                                                                -
-                                                            </c:otherwise>
-														</c:choose></td>
+
 													<td>${i.email}</td>
 													<td>${i.statevo.stateName}</td>
 													<td>${i.cityvo.cityName}</td>

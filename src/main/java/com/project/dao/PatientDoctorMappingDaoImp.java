@@ -54,12 +54,18 @@ public class PatientDoctorMappingDaoImp implements PatientDoctorMappingDao {
 		return pdVo;
 	}
 
+	public List<PatientDoctorMappingVO> search(){
+		Session session = sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from PatientDoctorMappingVO where status = true");
+		List<PatientDoctorMappingVO> searchList = q.list();
+		return searchList;
+	}
 	public List<PatientDoctorMappingVO> searchByDoctor(String doctorun) {
 		Session session = sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from PatientDoctorMappingVO where status = true and doctorvo.email =:email");
 		q.setParameter("email", doctorun);
 		List<PatientDoctorMappingVO> searchList = q.list();
-
+		
 		return searchList;
 	}
 

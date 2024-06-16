@@ -28,8 +28,7 @@ public class DoctorProfileController {
 
 	@PostMapping(value = "doctor/addProfile")
 	public ModelAndView saveCircular(@ModelAttribute DoctorVO doctorvo, MultipartFile govermentId,
-			MultipartFile addressProof, MultipartFile doctorCertificate, MultipartFile profilePicture,
-			HttpServletRequest request) {
+			MultipartFile addressProof, MultipartFile doctorCertificate, HttpServletRequest request) {
 
 		int id = doctorvo.getId();
 
@@ -37,15 +36,16 @@ public class DoctorProfileController {
 
 		doctorVO.setAge(doctorvo.getAge());
 		doctorVO.setProfileStatus(true);
-		DoctorVO new_doctorvo = this.doctorProfileService.saveProfile(govermentId, addressProof, doctorCertificate, profilePicture, request,doctorvo);
-		
+		DoctorVO new_doctorvo = this.doctorProfileService.saveProfile(govermentId, addressProof, doctorCertificate,
+				request, doctorvo);
+
 		doctorVO.setCertificatePath(new_doctorvo.getCertificatePath());
 		doctorVO.setAddressProofPath(new_doctorvo.getAddressProofPath());
 		doctorVO.setGovernmentIdPath(new_doctorvo.getGovernmentIdPath());
-		doctorVO.setProfilePhotoPath(new_doctorvo.getProfilePhotoPath());
-		
+	
+
 		System.out.println(doctorVO.getAddressProofPath());
-		
+
 		this.doctorService.save(doctorVO);
 
 		return new ModelAndView("redirect:/doctor/profile");

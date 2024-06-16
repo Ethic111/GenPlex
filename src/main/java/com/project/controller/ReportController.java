@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.project.model.CityVo;
 import com.project.model.DegreeVo;
 import com.project.model.DoctorVO;
+import com.project.model.LoginVO;
 import com.project.model.PatientDoctorMappingVO;
 import com.project.model.PatientVo;
 import com.project.model.ReportTypeVo;
@@ -162,6 +163,31 @@ public class ReportController {
 		return new ModelAndView("redirect:reports");
 	}
 
+	@GetMapping(value = "doctor/deleteReport")
+	public ModelAndView deleteReport(@RequestParam int rid) {
+		ReportVo reportVo = this.reportService.searchByReportID(rid);
+		this.reportService.deleteReport(reportVo);
+		return new ModelAndView("redirect:reports");
+	}
+
+	@GetMapping(value = "doctor/editReport")
+	public ModelAndView editReport(@RequestParam int rid) {
+		ReportVo reportVo = this.reportService.searchByReportID(rid);
+
+		List<StateVo> stateList = this.stateService.search();
+		List<CityVo> cityList = this.cityService.search();
+
+		String doctorun = BaseMethod.getUsername();
+		List<PatientDoctorMappingVO> patientDoctorMappingList = this.patientDoctorMappingService
+				.searchByDoctor(doctorun);
+
+		List<ReportTypeVo> reportTypeList = this.reportTypeService.search();
+
+		return new ModelAndView("doctor/addReport", "ReportVo", reportVo).addObject("stateList", stateList)
+				.addObject("cityList", cityList).addObject("patientDoctorMappingList", patientDoctorMappingList)
+				.addObject("reportTypeList", reportTypeList);
+	}
+
 	@GetMapping(value = "doctor/api/cities")
 	@ResponseBody
 	public ResponseEntity<List<CityVo>> apiCities(@RequestParam("state") int stateId) {
@@ -199,4 +225,5 @@ public class ReportController {
 		response.setStatus(true);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+
 }

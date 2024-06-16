@@ -45,6 +45,11 @@ public class PatientDoctorMappingServiceImp implements PatientDoctorMappingServi
 
 	}
 
+	public List<PatientDoctorMappingVO> search(){
+		List<PatientDoctorMappingVO> searchList = this.patientdoctorMappingDao.search();
+		return searchList;
+	}
+	
 	public List<PatientDoctorMappingVO> searchByDoctor(String doctorun) {
 		List<PatientDoctorMappingVO> searchList = this.patientdoctorMappingDao.searchByDoctor(doctorun);
 		return searchList;
@@ -67,6 +72,11 @@ public class PatientDoctorMappingServiceImp implements PatientDoctorMappingServi
 		// return searchList;
 		return response;
 
+	}
+	
+	public void delete(PatientDoctorMappingVO pdvo){
+		pdvo.setStatus(false);
+		this.patientdoctorMappingDao.save(pdvo);
 	}
 
 }
