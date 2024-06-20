@@ -83,7 +83,7 @@ public class DoctorDAOImp implements DoctorDAO {
 	}
 
 	public DoctorVO searchByUn(String logUsername) {
-		DoctorVO reqDocvo = new DoctorVO();
+		
 		Session session = this.sessionFactory.getCurrentSession();
 		// System.out.println(id);
 		Query q = session.createQuery(
@@ -93,9 +93,9 @@ public class DoctorDAOImp implements DoctorDAO {
 		List<DoctorVO> searchList = q.list();
 
 		if (searchList.size() > 0) {
-			reqDocvo = searchList.get(0);
+			return searchList.get(0);
 		}
-		return reqDocvo;
+		return null;
 	}
 
 }

@@ -167,7 +167,7 @@
 																</a> --%>
 
 																<button class="btn btn-success accept-btn"
-																	id="submitAcception" onclick="acceptDoctor(${i.id})">Accept</button>
+																	id="submitAcception-${i.id}" onclick="acceptDoctor(${i.id})">Accept</button>
 
 																<!-- doctorRejected?id=${i.id} -->
 

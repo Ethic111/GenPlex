@@ -26,12 +26,12 @@ $(document).ready(function() {
 		};
 	};
 
-	console.log('I am here......................')
+/*	console.log('I am here......................')*/
 	$.ajax({
 		url : "http://localhost:7072/doctor/api/patients",
 		method : 'GET',
 		success : function(response) {
-			console.log('res>>>>>' , response);
+			/*console.log('res>>>>>' , response);*/
 			$('#the-basics #patientTypehead').typeahead({
 				hint : true,
 				highlight : true,

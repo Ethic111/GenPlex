@@ -95,6 +95,32 @@ public class MainController {
 		// Initialize labels and data lists
 		List<String> barChartLabels = new ArrayList<>();
 		List<Integer> barChartData = new ArrayList<>();
+		List<String> pieChartLabels = new ArrayList<>();
+		List<Integer> pieChartData = new ArrayList<>();
+		
+//		-----------
+
+		// Create a map to count patients for each doctor
+		Map<String, Integer> patientDoctorCountMap = new HashMap<>();
+
+		// Initialize the patientDoctorCountMap with doctor names
+		for (DoctorVO doctor : doctorList) {
+			patientDoctorCountMap.put(doctor.getEmail(), 0);
+		}
+
+		// Count the patients for each doctor
+		for (PatientDoctorMappingVO pdvo : pdMappingList) {
+			String doctorEmail = pdvo.getDoctorvo().getEmail();
+			patientDoctorCountMap.put(doctorEmail, patientDoctorCountMap.get(doctorEmail) + 1);
+		}
+
+		// Populate the labels and data lists for the charts
+		for (Map.Entry<String, Integer> entry : patientDoctorCountMap.entrySet()) {
+			barChartLabels.add(entry.getKey());
+			barChartData.add(entry.getValue());
+		}
+		
+//		-----------
 
 		// Create a map to count the occurrences of each report type
 		Map<String, Integer> reportTypeCountMap = new HashMap<>();
@@ -112,14 +138,16 @@ public class MainController {
 
 		// Populate the labels and data lists for the charts
 		for (Map.Entry<String, Integer> entry : reportTypeCountMap.entrySet()) {
-			barChartLabels.add(entry.getKey());
-			barChartData.add(entry.getValue());
+			pieChartLabels.add(entry.getKey());
+			pieChartData.add(entry.getValue());
 		}
 
-		// // Print the labels and data to the console
-		// System.out.println("Bar Chart Labels: " + barChartLabels);
-		// System.out.println("Bar Chart Data: " + barChartData);
-		
+		// Print the labels and data to the console
+		System.out.println("Bar Chart Labels: " + barChartLabels);
+		System.out.println("Bar Chart Data: " + barChartData);
+		System.out.println(" Chart Labels: " + pieChartLabels);
+		System.out.println(" Chart Data: " + pieChartData);
+
 		int patientCount = patientList.size();
 		int doctorCount = doctorList.size();
 		int reportCount = reportList.size();
@@ -128,6 +156,8 @@ public class MainController {
 
 		modelAndView.addObject("barChartLabels", barChartLabels);
 		modelAndView.addObject("barChartData", barChartData);
+		modelAndView.addObject("pieChartLabels", pieChartLabels);
+		modelAndView.addObject("pieChartData", pieChartData);
 		modelAndView.addObject("doctorCount", doctorCount);
 		modelAndView.addObject("patientCount", patientCount);
 		modelAndView.addObject("reportCount", reportCount);
@@ -190,12 +220,12 @@ public class MainController {
 				patientReportbarChartLabels.add(entry.getKey());
 				patientReportbarChartData.add(entry.getValue());
 			}
-			
+
 			int patientCount = pdMappingList.size();
 			int reportCount = reportList.size();
-			
-//			System.out.println(patientReportbarChartLabels);
-//			System.out.println(patientReportbarChartData);
+
+			// System.out.println(patientReportbarChartLabels);
+			// System.out.println(patientReportbarChartData);
 
 			// Create and return the ModelAndView
 			ModelAndView modelAndView = new ModelAndView("doctor/index");
@@ -212,12 +242,14 @@ public class MainController {
 
 	@GetMapping(value = "patient/index")
 	public ModelAndView patientIndex() {
-		
+
 		List<ReportTypeVo> reportTypeList = this.reportTypeService.search();
 		List<ReportVo> reportList = this.reportService.searchByPatient(BaseMethod.getUsername());
-//		List<DoctorVO> doctorList = this.doctorService.searchAcceptedDoctors();
-//		List<PatientVo> patientList = this.patientService.search();
-//		List<PatientDoctorMappingVO> pdMappingList = this.patientDoctorMappingService.s
+		// List<DoctorVO> doctorList =
+		// this.doctorService.searchAcceptedDoctors();
+		// List<PatientVo> patientList = this.patientService.search();
+		// List<PatientDoctorMappingVO> pdMappingList =
+		// this.patientDoctorMappingService.s
 
 		// Initialize labels and data lists
 		List<String> pieChartLabels = new ArrayList<>();
@@ -233,9 +265,9 @@ public class MainController {
 		for (ReportTypeVo reportType : reportTypeList) {
 			reportTypeCountMap.put(reportType.getReportTypeName(), 0);
 		}
-		
+
 		for (ReportVo report : reportList) {
-			doctorReportCountMap .put(report.getPatientdoctorvo().getDoctorvo().getEmail(), 0);
+			doctorReportCountMap.put(report.getPatientdoctorvo().getDoctorvo().getEmail(), 0);
 		}
 
 		// Count the occurrences of each report type in the reportList
@@ -243,7 +275,7 @@ public class MainController {
 			String reportTypeName = report.getReporttypevo().getReportTypeName();
 			reportTypeCountMap.put(reportTypeName, reportTypeCountMap.get(reportTypeName) + 1);
 		}
-		
+
 		for (ReportVo report : reportList) {
 			String doctUName = report.getPatientdoctorvo().getDoctorvo().getEmail();
 			doctorReportCountMap.put(doctUName, doctorReportCountMap.get(doctUName) + 1);
@@ -254,22 +286,21 @@ public class MainController {
 			pieChartLabels.add(entry.getKey());
 			pieChartData.add(entry.getValue());
 		}
-		
+
 		for (Map.Entry<String, Integer> entry : doctorReportCountMap.entrySet()) {
 			barChartLabels.add(entry.getKey());
 			barChartData.add(entry.getValue());
 		}
-		
+
 		int doctorCount = barChartData.size();
-//		System.out.println(doctorCount);
-		
+		// System.out.println(doctorCount);
+
 		int reportCount = reportList.size();
-//		System.out.println(reportCount);
-		
+		// System.out.println(reportCount);
 
 		// // Print the labels and data to the console
-//		 System.out.println("Bar Chart Labels: " + barChartLabels);
-//		 System.out.println("Bar Chart Data: " + barChartData);
+		// System.out.println("Bar Chart Labels: " + barChartLabels);
+		// System.out.println("Bar Chart Data: " + barChartData);
 
 		ModelAndView modelAndView = new ModelAndView("patient/index");
 
@@ -279,10 +310,10 @@ public class MainController {
 		modelAndView.addObject("barChartData", barChartData);
 		modelAndView.addObject("doctorCount", doctorCount);
 		modelAndView.addObject("reportCount", reportCount);
-		
+
 		return modelAndView;
-		
-//		return new ModelAndView("patient/index");
+
+		// return new ModelAndView("patient/index");
 	}
 
 	@RequestMapping(value = "403", method = RequestMethod.GET)

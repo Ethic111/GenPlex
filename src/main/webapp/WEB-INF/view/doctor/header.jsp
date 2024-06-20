@@ -3,30 +3,13 @@
 	</a>
 	<div class="navbar-content">
 
-
 		<ul class="navbar-nav">
 
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="profileDropdown"
-				role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <img class="wd-35 ht-35 rounded-circle"
+			<li class="nav-item dropdown"><a class="nav-link" href="profile" title="view profile">
+					<img class="wd-35 ht-35 rounded-circle"
 					src="<%=request.getContextPath()%>/adminresources/images/doctorProfileIcon.jpg"
-					alt="profile" />
-			</a>
-				<div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
-					<ul class="list-unstyled p-1">
-						<li class="dropdown-item py-2"><a href="profile"
-							class="text-body ms-0"> <i
-								class="me-2 icon-md mdi mdi-account-details"></i> <span>Profile</span>
-						</a></li>
-
-						<li class="dropdown-item py-2"><a href="/logout"
-							class="text-body ms-0"> <i
-								class="me-2 icon-md mdi mdi-logout"></i> <span>Log Out</span>
-						</a></li>
-
-					</ul>
-				</div></li>
+					alt="doctorprofile" />
+			</a></li>
 		</ul>
 	</div>
 </nav>

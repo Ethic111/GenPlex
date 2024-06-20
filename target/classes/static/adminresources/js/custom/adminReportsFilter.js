@@ -107,6 +107,7 @@ function updateTableOnSelect(data, table) {
             $('td', row).addClass('text-wrap');
         }
     });
+    addDownloadEventListeners();
 }
 
 // File Download

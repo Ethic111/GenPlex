@@ -174,15 +174,7 @@
 														style="padding-right: 12px; cursor: pointer;"> <i
 															class="mdi mdi-eye"
 															style="color: blue; font-size: 1.4rem;"></i>
-													</a>
-													<%-- <a href="deleteReportType?id=${i.id}"><i
-															class="mdi mdi-delete-sweep"
-															style="color: red; font-size: 1.5rem;"></i></a> <a
-														href="editReportType?id=${i.id}"
-														style="margin-left: 1rem;"><i
-															class="mdi mdi-table-edit"
-															style="color: blue; font-size: 1.5rem;"></i> </a> --%>
-															</td>
+													</a></td>
 												</tr>
 											</c:forEach>
 

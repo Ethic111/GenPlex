@@ -20,30 +20,34 @@ $(function() {
 
 
 	// Fetch chart data from hidden inputs
-	var barChartLabels = document.getElementById('barChartLabels').value;
-	var barChartData = document.getElementById('barChartData').value;
+	var pieChartLabels = document.getElementById('pieChartLabels').value;
+	var pieChartData = document.getElementById('pieChartData').value;
+	
+// For Pie chat Lables:
 	
 	// Remove the square brackets at the beginning and end
-	let stringWithoutBrackets = barChartLabels.slice(1, -1);
+	let stringWithoutBrackets = pieChartLabels.slice(1, -1);
 
 	// Split the string into an array using ', ' (comma and space)
-	let newbarChartLabels = stringWithoutBrackets.split(',').map(item => item.trim());
+	let newpieChartLabels = stringWithoutBrackets.split(',').map(item => item.trim());
 
-// console.log(barChartLabels);
+ console.log(newpieChartLabels);
 	
 // ------------------------------------------------------------------------------------------
 	
+ // For Pie Chart Data:
+ 
 	// Remove the square brackets at the beginning and end
-	  let stringWithoutBrackets2 = barChartData.slice(1, -1);
+	  let stringWithoutBrackets2 = pieChartData.slice(1, -1);
 
 	  // Split the string into an array using ',' and trim whitespace from
 		// each item
 	  let stringArray = stringWithoutBrackets2.split(',').map(item => item.trim());
 
 	  // Convert each string in the array to an integer
-	  let newbarChartData = stringArray.map(item => parseInt(item, 10));
+	  let newpieChartData = stringArray.map(item => parseInt(item, 10));
 
-// console.log(newbarChartData);
+ console.log(newpieChartData);
 	
 // --------------------------------------------------------------------------------------
 	
@@ -51,6 +55,36 @@ $(function() {
 // console.log(barChartData);
 // console.log(pieChartLabels);
 // console.log(pieChartData);
+ 
+	// Fetch chart data from hidden inputs
+	var barChartLabels = document.getElementById('barChartLabels').value;
+	var barChartData = document.getElementById('barChartData').value;
+	
+// For Bar chat Lables:
+	
+	// Remove the square brackets at the beginning and end
+	let stringWithoutBrackets123 = barChartLabels.slice(1, -1);
+
+	// Split the string into an array using ', ' (comma and space)
+	let newbarChartLabels = stringWithoutBrackets123.split(',').map(item => item.trim());
+
+console.log(newbarChartLabels);
+	
+// ------------------------------------------------------------------------------------------
+	
+// For bar Chart Data:
+
+	// Remove the square brackets at the beginning and end
+	  let stringWithoutBrackets245 = barChartData.slice(1, -1);
+
+	  // Split the string into an array using ',' and trim whitespace from
+		// each item
+	  let stringArray24 = stringWithoutBrackets245.split(',').map(item => item.trim());
+
+	  // Convert each string in the array to an integer
+	  let newbarChartData = stringArray24.map(item => parseInt(item, 10));
+
+console.log(newbarChartData);
 
 	// Bar chart
 	if ($('#chartjsBar').length) {
@@ -109,13 +143,13 @@ $(function() {
 		new Chart($('#chartjsPie'), {
 			type : 'pie',
 			data : {
-				labels : newbarChartLabels ,
+				labels : newpieChartLabels ,
 				datasets : [ {
 					label : "Reports",
 					backgroundColor : [ colors.primary, colors.info,
 										colors.warning, colors.success, colors.danger ],
 					borderColor : colors.cardBg,
-					data : newbarChartData
+					data : newpieChartData
 				} ]
 			},
 			options : {
@@ -136,82 +170,4 @@ $(function() {
 		});
 	}
 
-	// Line Chart
-	if ($('#chartjsLine').length) {
-		new Chart($('#chartjsLine'), {
-			type : 'line',
-			data : {
-				labels : [ 1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950,
-						1999, 2050 ],
-				datasets : [
-						{
-							data : [ 86, 114, 106, 106, 107, 111, 133, 221,
-									783, 2478 ],
-							label : "Doctors",
-							borderColor : colors.info,
-							backgroundColor : "transparent",
-							fill : true,
-							pointBackgroundColor : colors.cardBg,
-							pointBorderWidth : 2,
-							pointHoverBorderWidth : 3,
-							tension : .3
-						},
-						{
-							data : [ 282, 350, 411, 502, 635, 809, 947, 1402,
-									3700, 5267 ],
-							label : "Patients",
-							borderColor : colors.danger,
-							backgroundColor : "transparent",
-							fill : true,
-							pointBackgroundColor : colors.cardBg,
-							pointBorderWidth : 2,
-							pointHoverBorderWidth : 3,
-							tension : .3
-						} ]
-			},
-			options : {
-				plugins : {
-					legend : {
-						display : true,
-						labels : {
-							color : colors.bodyColor,
-							font : {
-								size : '13px',
-								family : fontFamily
-							}
-						}
-					},
-				},
-				scales : {
-					x : {
-						display : true,
-						grid : {
-							display : true,
-							color : colors.gridBorder,
-							borderColor : colors.gridBorder,
-						},
-						ticks : {
-							color : colors.bodyColor,
-							font : {
-								size : 12
-							}
-						}
-					},
-					y : {
-						grid : {
-							display : true,
-							color : colors.gridBorder,
-							borderColor : colors.gridBorder,
-						},
-						ticks : {
-							color : colors.bodyColor,
-							font : {
-								size : 12
-							}
-						}
-					}
-				}
-			}
-		});
-	}
 });

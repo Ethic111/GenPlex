@@ -213,14 +213,15 @@
 
 	<script
 		src="<%=request.getContextPath()%>/adminresources/js/Chart.min.js"></script>
-	<%--  <script
-		src="<%=request.getContextPath()%>/adminresources/js/chartjs-light.js"></script>  --%>
+	<%-- <script
+		src="<%=request.getContextPath()%>/adminresources/js/chartjs-light.js"></script> --%>
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
 	<script
 		src="<%=request.getContextPath()%>/adminresources/js/dashboard-light.js"></script>
 	<!-- End custom js for this page -->
+	
 
 	<!-- Custom js for this page -->
 	<script

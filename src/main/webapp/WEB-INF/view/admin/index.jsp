@@ -156,7 +156,7 @@
 
 				<!-- row -->
 	
-				<div class="mb-5">
+				<div>
 					<div class="row">
 
 						<div class="col-6">
@@ -180,7 +180,7 @@
 					</div>
 				</div>
 
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col col-md-10">
 						<div class="card">
 							<div class="card-body">
@@ -190,7 +190,7 @@
 						</div>
 					</div>
 
-				</div>
+				</div> -->
 				<!-- row -->
 			</div>
 

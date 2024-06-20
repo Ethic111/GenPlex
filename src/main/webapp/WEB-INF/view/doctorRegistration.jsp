@@ -60,6 +60,7 @@
 									<div class="auth-form-wrapper px-4 py-5">
 										
 										<h3 class="text-muted fw-normal mb-4">Doctor Registration</h3>
+										<span class="text-danger">${param.errorMessage}</span>
 										
 										<f:form action="insertRequestedDoctor" method="post"
 											modelAttribute="DoctorVO" id="doctorRegistrationForm">
@@ -78,6 +79,7 @@
 													</label>
 													<f:input id="doctoremail" class="form-control"
 														name="doctorEmail" type="email" path="email" />
+													
 												</div>
 												<div class="col-6 mb-3">
 													<label for="statename" class="form-label">State

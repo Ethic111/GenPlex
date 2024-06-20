@@ -58,6 +58,13 @@ public class DoctorController {
 
 	@PostMapping(value = "insertRequestedDoctor")
 	public ModelAndView insertRequestedDoctor(@ModelAttribute DoctorVO requestedDoctorVo) {
+
+		DoctorVO doctorvo = this.doctorRequestService.searchByUn(requestedDoctorVo.getEmail());
+		if (doctorvo != null) {
+			return new ModelAndView("redirect:/registerDoctor").addObject("errorMessage",
+					"Doctor With '" + requestedDoctorVo.getEmail() + "' Email Already Exists");
+		}
+
 		requestedDoctorVo.setStatus(true);
 		requestedDoctorVo.setProfileStatus(false);
 		requestedDoctorVo.setReviewStatus(DoctorReviewStatus.NOT_REVIEWED);
